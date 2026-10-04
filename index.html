@@ -35,7 +35,17 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 70% 0%,#0b1827 0,#050a11 38%,#04080d 100%);color:var(--text);min-height:100vh}
+body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 70% 0%,#0b1827 0,#050a11 38%,#04080d 100%);color:var(--text);min-height:100vh;transition:background .2s ease,color .2s ease}
+/* Real light-theme layer for the Dark Mode setting. */
+body.light-preview{--bg:#f4f7fb;--sidebar:#ffffff;--panel:#ffffff;--panel2:#eef3f8;--line:#d7e0e9;--text:#17212b;--muted:#5f7082;background:#f4f7fb;color:#17212b}
+body.light-preview .sidebar{background:linear-gradient(180deg,#ffffff,#f4f7fb);border-right-color:#d7e0e9}
+body.light-preview .nav button,body.light-preview .cat{color:#344454}
+body.light-preview .nav button:hover,body.light-preview .cat:hover{background:#eaf1f7}
+body.light-preview .topbar{background:rgba(244,247,251,.92);border-bottom-color:#d7e0e9}
+body.light-preview .search-wrap,body.light-preview .lang,body.light-preview .round{background:#ffffff;border-color:#d2dce6;color:#263646}
+body.light-preview .hero,body.light-preview .card,body.light-preview .category-card,body.light-preview .settings-box,body.light-preview .modal-box{background:#ffffff;border-color:#d7e0e9;color:#17212b}
+body.light-preview .card-body .meta,body.light-preview .section-title small,body.light-preview .hero p,body.light-preview footer,body.light-preview .muted{color:#5f7082}
+body.light-preview input,body.light-preview textarea,body.light-preview select{background:#ffffff;color:#17212b;border-color:#cbd7e2}
 button,input{font:inherit}
 button{cursor:pointer}
 a{text-decoration:none;color:inherit}
@@ -162,14 +172,24 @@ html{scroll-behavior:auto}
 <style id="silent-ai-style">
 /* AI is a silent background service: never expose its controls/status to visitors. */
 .ai-center, .settings-box > .reset { display:none !important; }
+
+/* OWNER ADMIN DASHBOARD */
+.admin-btn{display:none!important;display:none!important;width:100%;margin-top:12px;padding:10px 12px;border:1px solid #1e79b8;border-radius:10px;background:#0b2740;color:#dff3ff;font-weight:800;font-size:11px}
+.admin-modal-box{width:min(980px,100%);max-height:92vh;overflow:auto;background:#0a131e;border:1px solid #28445c;border-radius:18px;padding:18px;box-shadow:0 30px 100px #000}
+.admin-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}.admin-head h2{font-size:22px}.admin-head p{color:#8192a5;font-size:11px;margin-top:3px}
+.admin-login{display:grid;gap:10px;max-width:420px;margin:auto;padding:20px}.admin-login input,.admin-form input,.admin-form select,.admin-form textarea{width:100%;border:1px solid #263b50;background:#0b1723;color:#edf5fc;border-radius:9px;padding:11px;outline:none}.admin-login input:focus,.admin-form input:focus,.admin-form select:focus,.admin-form textarea:focus{border-color:#168fe8}
+.admin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.admin-stat{background:#0d1a27;border:1px solid #20374b;border-radius:12px;padding:12px}.admin-stat b{font-size:21px}.admin-stat small{display:block;color:#7f90a4;font-size:9px;margin-top:3px}.admin-section{margin-top:14px;border:1px solid #1d3245;background:#0b1723;border-radius:13px;padding:13px}.admin-section h3{font-size:13px;margin-bottom:10px}.admin-table{width:100%;border-collapse:collapse;font-size:10px}.admin-table th,.admin-table td{text-align:left;padding:8px;border-bottom:1px solid #1b2b3c;color:#b9c7d5}.admin-table th{color:#8194a9}.admin-actions{display:flex;gap:7px;flex-wrap:wrap}.admin-actions button{padding:8px 10px;border-radius:8px;border:1px solid #29435a;background:#101f2e;color:#dce8f4;font-size:10px;font-weight:800}.admin-actions .primary-admin{background:#128fe9;border-color:#128fe9;color:#fff}.admin-form{display:grid;grid-template-columns:1fr 1fr;gap:9px}.admin-form .full{grid-column:1/-1}.admin-note{font-size:10px;color:#788ba0;line-height:1.55}.admin-alert{padding:9px 10px;border-radius:9px;background:#172537;border:1px solid #2a4258;color:#b9c8d7;font-size:10px;line-height:1.5;margin-bottom:10px}.admin-alert.warn{background:#2a2110;border-color:#70531d;color:#f2d58a}.admin-link{color:#29a8ff}.admin-hidden{display:none!important}
+@media(max-width:650px){.admin-grid{grid-template-columns:repeat(2,1fr)}.admin-form{grid-template-columns:1fr}.admin-form .full{grid-column:auto}.admin-table{display:block;overflow-x:auto;white-space:nowrap}}
 </style>
+<!-- Google Analytics 4: add your Measurement ID (G-XXXXXXXXXX) here when ready. -->
+<!-- Admin access remains hidden from normal visitors. -->
 </head>
 <body>
 
 
 <div class="layout">
 <aside class="sidebar" id="sidebar">
-  <div class="brand"><div class="brand-mark"><svg class="brand-svg" viewBox="0 0 64 64" aria-hidden="true">
+  <div class="brand" onclick="ghSecretAdminTap()" title=""><div class="brand-mark"><svg class="brand-svg" viewBox="0 0 64 64" aria-hidden="true">
   <defs>
     <linearGradient id="logoG" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#17a9ff"/>
@@ -282,6 +302,45 @@ html{scroll-behavior:auto}
  </div>
 </div>
 
+
+<div class="modal" id="adminModal" onclick="closeAdmin(event)">
+ <div class="admin-modal-box">
+  <div class="admin-head"><div><h2>🔐 Owner Admin Dashboard</h2><p>Game Hub control center — content tools and visitor analytics.</p></div><button class="close" onclick="closeAdmin()">✕</button></div>
+  <div id="adminLoginView">
+   <div class="admin-alert warn">This is a static GitHub Pages site. A browser-only admin login is not a secure server authentication system. Use this panel for owner tools on your device; do not put a real secret or API token in this HTML file.</div>
+   <div class="admin-login">
+    <input id="adminPin" type="password" inputmode="numeric" autocomplete="off" placeholder="Owner PIN">
+    <button class="primary" onclick="adminLogin()">Unlock Dashboard</button>
+    <div class="admin-note">Default local PIN: <b>2580</b>. Change it in the dashboard after unlocking. This PIN is only a convenience gate, not server security.</div>
+    <div id="adminLoginMsg" class="admin-note"></div>
+   </div>
+  </div>
+  <div id="adminDashView" class="admin-hidden">
+   <div class="admin-alert" id="analyticsNotice">📊 Local counters are shown below. For real all-visitor totals across every phone/device, connect Google Analytics (GA4) or another analytics service; GitHub Pages cannot provide those totals to this HTML by itself.</div>
+   <div class="admin-grid">
+    <div class="admin-stat"><b id="admViews">0</b><small>Page views (this browser)</small></div>
+    <div class="admin-stat"><b id="admSessions">0</b><small>Sessions (this browser)</small></div>
+    <div class="admin-stat"><b id="admSearches">0</b><small>Searches</small></div>
+    <div class="admin-stat"><b id="admClicks">0</b><small>Store clicks</small></div>
+   </div>
+   <div class="admin-section"><h3>📈 Growth</h3><div id="admGrowth" class="admin-note">No local history yet.</div></div>
+   <div class="admin-section"><h3>🎮 Catalog</h3><div class="admin-actions"><button class="primary-admin" onclick="openCatalogForm()">➕ Add Game/App</button><button onclick="exportCatalog()">⬇ Export Catalog</button><button onclick="resetLocalCatalog()">↺ Reset Local Changes</button></div><div id="admCatalog" style="margin-top:10px"></div></div>
+   <div class="admin-section"><h3>🔎 Activity</h3><div id="admTop" class="admin-note">No activity yet.</div></div>
+   <div class="admin-section"><h3>📊 Real Analytics</h3><div class="admin-note">Use GA4 for actual visitors, countries, devices, live users, page views, traffic sources and growth. The measurement ID must be added to the published HTML before data can be collected. Never put a GA service-account secret in this file.</div><div class="admin-actions" style="margin-top:9px"><a class="admin-actions" href="https://analytics.google.com/" target="_blank" rel="noopener"><button type="button">Open Google Analytics</button></a></div></div>
+   <div class="admin-section admin-form" id="catalogForm" style="display:none">
+    <input id="cfName" placeholder="Name"><select id="cfType"><option value="game">Game</option><option value="app">App</option></select>
+    <input id="cfCat" placeholder="Category"><input id="cfVersion" placeholder="Version">
+    <input id="cfAndroid" placeholder="Android requirement"><input id="cfSize" placeholder="Size">
+    <input id="cfIcon" placeholder="Emoji/icon"><input id="cfSource" class="full" placeholder="Official store/source URL">
+    <textarea id="cfDesc" class="full" rows="3" placeholder="Short description"></textarea>
+    <div class="admin-actions full"><button class="primary-admin" onclick="saveCatalogItem()">Save Listing</button><button onclick="closeCatalogForm()">Cancel</button></div>
+   </div>
+   <div class="admin-section"><h3>🔑 Owner PIN</h3><div class="admin-form"><input id="newAdminPin" inputmode="numeric" maxlength="12" placeholder="New local PIN"><button class="primary-admin" onclick="changeAdminPin()">Change PIN</button></div></div>
+   <div class="admin-actions" style="margin-top:12px"><button onclick="adminLogout()">Lock Dashboard</button></div>
+  </div>
+ </div>
+</div>
+
 <div class="modal" id="settingsModal" onclick="closeSettings(event)">
  <div class="settings-box">
   <div class="settings-head"><div><h2>⚙️ Settings</h2><p>Customize your Game Hub</p></div><button class="close" onclick="closeSettings()">✕</button></div>
@@ -307,6 +366,7 @@ html{scroll-behavior:auto}
   <div class="ai-report" id="aiReport">Smart AI checks the page structure, catalog metadata, storage settings, risky URL patterns and basic performance signals. It does not claim to detect malware inside remote APK files.</div>
   <div class="ai-foot">Local browser checks only. For real server/APK malware scanning, use a server-side security scanner and independent review. Automated static analysis can miss issues and can produce false positives. </div>
 </div>
+  <button id="hiddenAdminTrigger" class="admin-btn" onclick="openAdmin()" style="display:none!important" aria-hidden="true" tabindex="-1">🔐 Owner Admin Dashboard</button>
   <button class="reset" onclick="resetSettings()">Reset Settings</button>
  </div>
 </div>
@@ -314,7 +374,7 @@ html{scroll-behavior:auto}
 
 
 <script>
-const items=[{name:"Minesweeper - Antimine",type:"game",cat:"Puzzle",icon:"💣",trending:true,latest:true,version:"17.6.3 F",android:"Android 5.0+",size:"9 MB",download:"official-store",source:"https://f-droid.org/en/packages/dev.lucanlm.antimine/"},
+let items=[{name:"Minesweeper - Antimine",type:"game",cat:"Puzzle",icon:"💣",trending:true,latest:true,version:"17.6.3 F",android:"Android 5.0+",size:"9 MB",download:"official-store",source:"https://f-droid.org/en/packages/dev.lucanlm.antimine/"},
  {name:"Colorgram",type:"game",cat:"Puzzle",icon:"🎨",trending:true,latest:true,version:"1.0.1",android:"Android 5.0+",size:"~5 MB",download:"official-store",source:"https://f-droid.org/en/packages/com.sidhant.colorgram/"},
  {name:"Binary Puzzle",type:"game",cat:"Puzzle",icon:"🔢",trending:false,latest:true,version:"1.0.1",android:"Android 7.0+",size:"~1 MB",download:"official-store",source:"https://f-droid.org/en/packages/com.sidhant.binarypuzzle/"},
  {name:"F-Droid",type:"app",cat:"Tools",icon:"📦",trending:true,latest:true,version:"2.0.1",android:"Android 7.0+",size:"11 MB",download:"official-store",source:"https://f-droid.org/packages/org.fdroid.fdroid/"},
@@ -765,6 +825,7 @@ function updateStats(){
 }
 
 function downloadItem(name,url){
+  ghTrack("clicks",name);
   const q = encodeURIComponent(name);
   const isApple = /iPhone|iPad|iPod|Macintosh/i.test(navigator.userAgent);
   const storeUrl = isApple
@@ -775,7 +836,12 @@ function downloadItem(name,url){
   // Always send visitors to the official app store.
   window.location.href = storeUrl;
 }
-function toggleLight(){document.body.classList.toggle("light-preview")}
+function toggleLight(){
+ const dark=document.getElementById("darkToggle");
+ const nextDark=document.body.classList.contains("light-preview");
+ if(dark)dark.checked=nextDark;
+ toggleDark(dark||{checked:nextDark});
+}
 function toggleDark(el){document.body.classList.toggle("light-preview",!el.checked);localStorage.setItem("ghDark",el.checked)}
 function toggleAnimations(el){document.body.classList.toggle("noanim",!el.checked);localStorage.setItem("ghAnim",el.checked)}
 function toggleSave(el){localStorage.setItem("ghSave",el.checked)}
@@ -856,7 +922,7 @@ function runSmartAIRepair(){
    if(!x.download)x.download="official-store";
    if(/^javascript:|^data:|^vbscript:/i.test(String(x.download))) {x.download="official-store";changes.push("Replaced unsafe download field for "+x.name);}
   }
-  renderCategories();render();updateStats();
+  ghLoadLocalCatalog();ghTrackView();renderCategories();render();updateStats();
   aiSetStatus("Repair complete",changes.length+" safe fix(es) applied.","ok");
   aiReport(["AI Repair complete","",...(changes.length?changes.map(x=>"✓ "+x):["✓ Nothing needed repair."]),"","No files were deleted and no app/APK was modified."]);
  }catch(e){aiSetStatus("Repair error","No changes were made after the error.","bad");aiReport(["AI Repair error",String(e&&e.message||e)])}
@@ -1018,6 +1084,69 @@ window.addEventListener("unhandledrejection",(e)=>{
   }catch(x){}
 });
 
+
+/* OWNER DASHBOARD + LOCAL ANALYTICS */
+const GH_ADMIN_KEY="ghAdminPin";
+const GH_ADMIN_DEFAULT="2580";
+const GH_METRICS_KEY="ghMetricsV1";
+const GH_LOCAL_CATALOG_KEY="ghLocalCatalogV1";
+let ghAdminUnlocked=false;
+let ghEditingIndex=-1;
+function ghLoadJSON(k,f){try{const v=JSON.parse(localStorage.getItem(k)||"");return v??f}catch(e){return f}}
+function ghSaveJSON(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function ghMetrics(){return ghLoadJSON(GH_METRICS_KEY,{views:0,sessions:0,searches:0,clicks:0,days:{},top:{}})}
+function ghTrack(type,name=""){
+ const m=ghMetrics(); const now=new Date(); const day=now.toISOString().slice(0,10);
+ m[type]=(Number(m[type])||0)+1; m.days=m.days||{}; m.days[day]=(m.days[day]||0)+1;
+ if(name){m.top=m.top||{};const k=type+":"+name;m.top[k]=(m.top[k]||0)+1}
+ ghSaveJSON(GH_METRICS_KEY,m);
+}
+function ghTrackSession(){
+ const key="ghSessionV1"; if(!sessionStorage.getItem(key)){sessionStorage.setItem(key,"1");ghTrack("sessions")}
+}
+function ghTrackView(){ghTrack("views");ghTrackSession()}
+function ghLoadLocalCatalog(){
+ const extra=ghLoadJSON(GH_LOCAL_CATALOG_KEY,[]); if(!Array.isArray(extra))return;
+ // Local-only owner drafts/changes. They never alter the published file for other visitors.
+ const by=Object.create(null); items.forEach((x,i)=>by[String(x.name).toLowerCase()]=i);
+ extra.forEach(x=>{if(!x||!x.name)return;const i=by[String(x.name).toLowerCase()];if(i===undefined)items.push(x);else items[i]=Object.assign({},items[i],x)})
+}
+function ghRecordSearch(){const q=document.getElementById("search")?.value?.trim();if(q)ghTrack("searches",q.toLowerCase())}
+function ghRenderAdmin(){
+ const m=ghMetrics();
+ ["views","sessions","searches","clicks"].forEach(k=>{const e=document.getElementById("adm"+(k[0].toUpperCase()+k.slice(1)));if(e)e.textContent=Number(m[k]||0)})
+ const days=Object.entries(m.days||{}).sort((a,b)=>a[0].localeCompare(b[0]));
+ const last=days.slice(-7),prev=days.slice(-14,-7);const a=last.reduce((n,x)=>n+x[1],0),b=prev.reduce((n,x)=>n+x[1],0);const pct=b?((a-b)/b*100):0;
+ const g=document.getElementById("admGrowth");if(g)g.innerHTML=`Last 7 local page views: <b>${a}</b> • Previous 7: <b>${b}</b> • Growth: <b>${pct>=0?"+":""}${pct.toFixed(1)}%</b>`;
+ const top=document.getElementById("admTop");if(top){const rows=Object.entries(m.top||{}).sort((a,b)=>b[1]-a[1]).slice(0,8);top.innerHTML=rows.length?rows.map(([k,v])=>`${k.replace(/</g,"&lt;")} — <b>${v}</b>`).join("<br>"):"No activity yet."}
+ const c=document.getElementById("admCatalog");if(c){const rows=items.slice(0,100).map((x,i)=>`<tr><td>${i+1}</td><td>${String(x.name).replace(/</g,"&lt;")}</td><td>${x.type}</td><td>${x.cat||"Other"}</td><td><button type="button" onclick="editCatalogItem(${i})">Edit</button> <button type="button" onclick="deleteCatalogItem(${i})">Delete</button></td></tr>`).join("");c.innerHTML=`<table class="admin-table"><thead><tr><th>#</th><th>Name</th><th>Type</th><th>Category</th><th>Action</th></tr></thead><tbody>${rows}</tbody></table>`}
+}
+let ghOwnerTapCount=0, ghOwnerTapTimer=null;
+function initHiddenAdminTrigger(){const brand=document.querySelector(".brand");if(!brand)return;brand.setAttribute("title","Game Hub");brand.addEventListener("click",()=>{ghOwnerTapCount++;clearTimeout(ghOwnerTapTimer);ghOwnerTapTimer=setTimeout(()=>{ghOwnerTapCount=0},2200);if(ghOwnerTapCount>=7){ghOwnerTapCount=0;openAdmin()}})}
+let ghSecretTapCount=0,ghSecretTapTimer=null;
+function ghSecretAdminTap(){
+  ghSecretTapCount++;
+  clearTimeout(ghSecretTapTimer);
+  ghSecretTapTimer=setTimeout(()=>{ghSecretTapCount=0},1500);
+  if(ghSecretTapCount>=5){ghSecretTapCount=0;openAdmin();}
+}
+document.addEventListener("keydown",e=>{
+  if(e.ctrlKey && e.shiftKey && e.key.toLowerCase()==="a"){e.preventDefault();openAdmin();}
+});
+function openAdmin(){document.getElementById("adminModal").classList.add("show");ghRenderAdmin();if(ghAdminUnlocked)showAdminDash()}
+function closeAdmin(e){if(!e||e.target===document.getElementById("adminModal")){document.getElementById("adminModal").classList.remove("show");closeCatalogForm()}}
+function adminLogin(){const pin=document.getElementById("adminPin").value;const saved=localStorage.getItem(GH_ADMIN_KEY)||GH_ADMIN_DEFAULT;const msg=document.getElementById("adminLoginMsg");if(pin===saved){ghAdminUnlocked=true;showAdminDash();msg.textContent=""}else msg.textContent="Wrong PIN."}
+function showAdminDash(){document.getElementById("adminLoginView").classList.add("admin-hidden");document.getElementById("adminDashView").classList.remove("admin-hidden");ghRenderAdmin()}
+function adminLogout(){ghAdminUnlocked=false;document.getElementById("adminDashView").classList.add("admin-hidden");document.getElementById("adminLoginView").classList.remove("admin-hidden");document.getElementById("adminPin").value=""}
+function changeAdminPin(){if(!ghAdminUnlocked)return;const p=document.getElementById("newAdminPin").value.trim();if(!/^[0-9]{4,12}$/.test(p)){alert("Use 4–12 digits.");return}localStorage.setItem(GH_ADMIN_KEY,p);document.getElementById("newAdminPin").value="";alert("Local owner PIN changed.")}
+function openCatalogForm(){ghEditingIndex=-1;document.getElementById("catalogForm").style.display="grid";["cfName","cfCat","cfVersion","cfAndroid","cfSize","cfIcon","cfSource","cfDesc"].forEach(id=>document.getElementById(id).value="")}
+function closeCatalogForm(){const e=document.getElementById("catalogForm");if(e)e.style.display="none"}
+function editCatalogItem(i){const x=items[i];if(!x)return;ghEditingIndex=i;document.getElementById("catalogForm").style.display="grid";document.getElementById("cfName").value=x.name||"";document.getElementById("cfType").value=x.type||"game";document.getElementById("cfCat").value=x.cat||"Other";document.getElementById("cfVersion").value=x.version||"Latest";document.getElementById("cfAndroid").value=x.android||"See store";document.getElementById("cfSize").value=x.size||"See store";document.getElementById("cfIcon").value=x.icon||"🎮";document.getElementById("cfSource").value=x.source||"";document.getElementById("cfDesc").value=x.description||""}
+function saveCatalogItem(){const name=document.getElementById("cfName").value.trim();if(!name){alert("Game/App name is required.");return}const x={name,type:document.getElementById("cfType").value,cat:document.getElementById("cfCat").value.trim()||"Other",version:document.getElementById("cfVersion").value.trim()||"Latest",android:document.getElementById("cfAndroid").value.trim()||"See store",size:document.getElementById("cfSize").value.trim()||"See store",icon:document.getElementById("cfIcon").value.trim()||"🎮",download:"official-store",source:document.getElementById("cfSource").value.trim(),description:document.getElementById("cfDesc").value.trim(),trending:false,latest:true};if(ghEditingIndex>=0)items[ghEditingIndex]=Object.assign({},items[ghEditingIndex],x);else items.push(x);ghSaveJSON(GH_LOCAL_CATALOG_KEY,items);renderCategories();render();updateStats();ghRenderAdmin();closeCatalogForm()}
+function deleteCatalogItem(i){if(!confirm("Delete this listing from this browser's local catalog?"))return;items.splice(i,1);ghSaveJSON(GH_LOCAL_CATALOG_KEY,items);renderCategories();render();updateStats();ghRenderAdmin()}
+function resetLocalCatalog(){if(!confirm("Reset local catalog changes on this browser?"))return;localStorage.removeItem(GH_LOCAL_CATALOG_KEY);location.reload()}
+function exportCatalog(){const blob=new Blob([JSON.stringify(items,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="gamehub-catalog.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+
 function openSettings(){document.getElementById("settingsModal").classList.add("show")}
 function closeSettings(e){if(!e||e.target===document.getElementById("settingsModal"))document.getElementById("settingsModal").classList.remove("show")}
 const legalPages={
@@ -1104,9 +1233,29 @@ document.getElementById("search").addEventListener("input",()=>{
   const value=document.getElementById("search").value;
   if(localStorage.getItem("ghSave")==="true")localStorage.setItem("ghSearch",value);
   clearTimeout(searchTimer);
-  searchTimer=setTimeout(()=>requestAnimationFrame(render),120);
+  searchTimer=setTimeout(()=>{ghRecordSearch();requestAnimationFrame(render)},120);
 });
 
+</script>
+<script>
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",initHiddenAdminTrigger)}else{initHiddenAdminTrigger()}
+</script>
+<script>
+(function(){
+  let taps=0,last=0;
+  function secretAdmin(){ if(typeof openAdmin==='function') openAdmin(); }
+  document.addEventListener('click',function(e){
+    const el=e.target.closest && e.target.closest('h1,.brand,.logo,[data-brand]');
+    if(!el) return;
+    const now=Date.now();
+    if(now-last>1800) taps=0;
+    last=now; taps++;
+    if(taps>=5){ taps=0; secretAdmin(); }
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.ctrlKey && e.shiftKey && e.key.toLowerCase()==='a'){e.preventDefault();secretAdmin();}
+  });
+})();
 </script>
 </body>
 </html>
