@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Game Hub is an Android games and apps discovery website. Explore games, useful apps, categories, trending titles, latest releases, versions, Android requirements and file sizes.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="Game Hub">
+<meta name="theme-color" content="#050a11">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Game Hub">
+<meta property="og:title" content="Game Hub — Android Games & Apps">
+<meta property="og:description" content="Discover Android games and useful apps with categories, trending titles, latest releases, version information and Android compatibility.">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Game Hub — Android Games & Apps">
+<meta name="twitter:description" content="Discover Android games and useful apps, categories, trending titles and latest releases.">
+<title>Game Hub — Android Games & Apps | v1.3.6</title>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"Game Hub",
+  "alternateName":"GAMEHUB",
+  "description":"Android games and apps discovery website with categories, trending titles, latest releases and app information.",
+  "inLanguage":"en-IN",
+  "publisher":{"@type":"Organization","name":"Game Hub"}
+}
+</script>
+<style>
+:root{
+ --bg:#050a11;--sidebar:#07101a;--panel:#0d1621;--panel2:#101b28;
+ --line:#1c2a3a;--text:#f4f7fb;--muted:#91a0b3;--blue:#1297ff;
+ --blue2:#2bb7ff;--purple:#7768ff;--gold:#ffc400;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 70% 0%,#0b1827 0,#050a11 38%,#04080d 100%);color:var(--text);min-height:100vh}
+button,input{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+.layout{display:flex;min-height:100vh}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:214px;background:linear-gradient(180deg,#07111b,#050b13);border-right:1px solid var(--line);padding:17px 11px;z-index:20;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:9px;padding:3px 10px 22px}
+.brand-mark{width:43px;height:43px;border-radius:12px;background:linear-gradient(145deg,#0b1825,#101d2b);border:1px solid #29435a;display:grid;place-items:center;box-shadow:0 7px 25px rgba(18,151,255,.22)}.brand-svg{width:38px;height:38px;display:block}.footer-logo{display:inline-flex;vertical-align:middle;width:28px;height:28px;margin-right:5px}.footer-logo .brand-svg{width:28px;height:28px}
+.brand b{font-size:20px;letter-spacing:-.8px}.brand b span{color:#1aa6ff}.brand small{display:block;color:#8d9caf;font-size:9px;margin-top:1px}
+.side-title{color:#7f8c9d;text-transform:uppercase;font-size:10px;font-weight:700;padding:13px 12px 7px}
+.nav{display:grid;gap:3px;position:relative;z-index:25}.nav button{touch-action:manipulation;position:relative;z-index:26;pointer-events:auto}.nav button{width:100%;display:flex;align-items:center;gap:12px;border:0;background:transparent;color:#cbd4df;text-align:left;padding:10px 12px;border-radius:10px;font-size:13px}.nav button:hover{background:#101d2a}.nav button.active{background:linear-gradient(90deg,#0e78d0,#0b4e8c);color:#fff;box-shadow:inset 3px 0 #20a8ff}.nav-icon{width:20px;text-align:center;font-size:16px}
+.cat{display:flex;align-items:center;gap:10px;color:#c2ccd8;font-size:12px;padding:8px 12px;border-radius:9px}.cat:hover{background:#0d1824}.cat{border:0;background:transparent;width:100%;font:inherit;text-align:left;color:#cbd4df;cursor:pointer}.cat.active{background:#102438;color:#fff}.category-card.active{outline:2px solid #159cff;transform:translateY(-1px)}.empty-state{grid-column:1/-1;padding:28px;text-align:center;color:#91a0b3;background:#0d1621;border:1px dashed #26384c;border-radius:14px}.cat-dot{width:13px;height:13px;border-radius:4px;display:inline-block}
+.sidebar-footer{border-top:1px solid var(--line);margin-top:16px;padding:15px 12px;color:#6f7d8e;font-size:10px;line-height:1.5}
+
+.main{margin-left:214px;width:calc(100% - 214px);min-width:0}
+.topbar{height:70px;display:flex;align-items:center;gap:14px;padding:10px 22px;border-bottom:1px solid rgba(28,42,58,.85);background:rgba(5,10,17,.78);backdrop-filter:blur(18px);position:sticky;top:0;z-index:15}
+.mobile-menu{display:none;border:1px solid var(--line);background:#0c1520;color:#fff;border-radius:10px;padding:8px 11px}
+.search-wrap{flex:1;max-width:650px;margin:auto;position:relative}.search-wrap span{position:absolute;left:15px;top:10px;color:#708197;font-size:16px}.search-wrap input{width:100%;height:42px;border:1px solid #233244;background:#0a131e;color:#eaf2fb;border-radius:22px;padding:0 18px 0 42px;outline:none}.search-wrap input:focus{border-color:#28658f;box-shadow:0 0 0 3px rgba(18,151,255,.08)}
+.top-actions{display:flex;align-items:center;gap:8px}.top-actions button{border:1px solid var(--line);background:#0b141f;color:#dce5ee;border-radius:20px;padding:9px 12px}.lang{display:flex;align-items:center;gap:6px}.round{width:40px;height:40px;padding:0!important;border-radius:50%!important}
+
+.content{padding:17px 22px 38px;max-width:1500px;margin:auto}
+.seo-intro{margin:0 0 22px;padding:18px 20px;background:#09131e;border:1px solid #1c2a3a;border-radius:14px;color:#aab7c7;line-height:1.65}.seo-intro h2{color:#eef5fc;font-size:18px;margin-bottom:7px}.seo-intro p{font-size:13px;margin-top:6px}.seo-intro button{border:0;background:none;color:#2bb7ff;font-weight:700;padding:0;cursor:pointer}.hero{position:relative;min-height:270px;border:1px solid #263648;border-radius:15px;overflow:hidden;background:linear-gradient(90deg,#0c1621 0%,rgba(9,18,28,.82) 35%,rgba(9,18,28,.2) 72%),linear-gradient(135deg,#17283a,#0b131e);margin-bottom:20px}
+.hero-art{position:absolute;inset:0;background:
+ radial-gradient(circle at 75% 55%,rgba(28,145,255,.38),transparent 24%),
+ radial-gradient(circle at 86% 65%,rgba(255,123,36,.25),transparent 18%),
+ linear-gradient(120deg,transparent 35%,rgba(255,255,255,.03) 35%,transparent 36%),
+ linear-gradient(165deg,transparent 50%,rgba(255,150,40,.16) 50%,transparent 67%);
+}
+.hero-art:before{content:"";position:absolute;width:230px;height:230px;right:14%;top:20px;border-radius:50%;background:linear-gradient(135deg,#344b60,#121b25);box-shadow:0 0 70px rgba(39,148,255,.24);opacity:.8}
+.hero-copy{position:relative;z-index:2;padding:35px 35px;max-width:620px}.hero-badge{display:inline-flex;background:#60251c;color:#ffb27c;border:1px solid #91402c;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:800;margin-bottom:12px}.hero h1{font-size:clamp(32px,4vw,48px);line-height:1.02;margin-bottom:8px}.hero h1 span{color:#28a7ff}.hero p{color:#b2becb;line-height:1.55;font-size:13px;max-width:520px}.hero-actions{display:flex;gap:9px;margin-top:20px}.primary,.secondary{border-radius:9px;padding:11px 18px;border:1px solid var(--line);font-weight:800}.primary{background:#1297ff;color:white;border-color:#1297ff}.secondary{background:#0d1722;color:#dce7f3}
+
+.section{margin-top:22px}.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}.section-title{display:flex;align-items:center;gap:9px;font-size:20px}.section-title .mini{font-size:18px}.view{border:0;background:transparent;color:#1da5ff;font-size:12px;font-weight:700}
+.categories{display:grid;grid-template-columns:repeat(10,minmax(85px,1fr));gap:9px;overflow-x:auto;padding-bottom:3px}.category-card{min-width:85px;height:92px;border-radius:10px;border:1px solid #243447;position:relative;overflow:hidden;background:linear-gradient(145deg,#18293a,#0d1722);display:flex;align-items:flex-end;padding:9px}.category-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 60% 25%,var(--cat),transparent 48%);opacity:.42}.category-card span{position:relative;z-index:1;font-size:11px;font-weight:800;text-shadow:0 2px 7px #000}.category-symbol{position:absolute;top:13px;right:13px;font-size:27px;opacity:.9}
+
+.grid{display:grid;grid-template-columns:repeat(6,minmax(145px,1fr));gap:11px}.card{min-width:0;background:linear-gradient(180deg,#101b28,#0b141e);border:1px solid #1f3041;border-radius:11px;overflow:hidden;transition:.18s}.card:hover{transform:translate3d(0,-3px,0);border-color:#34506a}.cover{height:145px;position:relative;overflow:hidden;background:linear-gradient(135deg,#23364a,#0e1722);display:grid;place-items:center}.cover:before{content:"";position:absolute;width:130px;height:130px;border-radius:50%;background:var(--cover);filter:blur(1px);opacity:.65;right:-28px;top:-25px}.cover:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.72),transparent 55%)}.cover-icon{position:relative;z-index:1;font-size:55px;filter:drop-shadow(0 8px 12px rgba(0,0,0,.55))}.cover-label{position:absolute;left:9px;bottom:8px;z-index:2;font-size:9px;font-weight:900;background:rgba(0,0,0,.52);padding:4px 6px;border-radius:5px}.card-body{padding:10px}.card h3{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:4px}.meta{font-size:10px;color:#7f90a4;display:flex;gap:5px;flex-wrap:wrap}.rating{margin-top:7px;color:#ffd000;font-size:11px}.download{width:100%;margin-top:9px;border:0;border-radius:7px;padding:8px;background:#128fe9;color:#fff;font-weight:800;font-size:11px}.app-grid .cover{height:100px}.app-grid .cover-icon{font-size:42px}.app-grid .card h3{font-size:12px}.app-grid .download{margin-top:8px}
+
+footer{border-top:1px solid var(--line);margin-top:30px;padding:24px 0;color:#728093;font-size:10px}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:20px}.footer-brand{font-size:18px;color:#e8eef6;font-weight:900}.footer-brand span{color:#149eff}.footer-grid h4{color:#e7edf4;font-size:11px;margin-bottom:8px}.footer-grid p,.footer-grid button{color:#788698;background:none;border:0;font-size:10px;display:block;margin:5px 0;text-align:left}.legal-links{border-top:1px solid var(--line);margin-top:20px;padding-top:12px;display:flex;gap:15px;flex-wrap:wrap}.legal-links button{color:#77879a;background:none;border:0;font-size:10px}
+
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.74);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:16px;z-index:100}.modal.show{display:flex}.settings-box,.legal-box{width:min(720px,100%);max-height:88vh;overflow:auto;background:#0e1722;border:1px solid #2a3a4c;border-radius:18px;padding:20px;box-shadow:0 30px 90px rgba(0,0,0,.6)}.settings-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}.settings-head h2{font-size:20px}.settings-head p{font-size:11px;color:#78889a;margin-top:3px}.close{width:35px;height:35px;border-radius:9px;border:1px solid var(--line);background:#111c28;color:#fff}.setting-row{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding:14px 0}.setting-row strong{font-size:13px}.setting-row small{display:block;color:#78889a;font-size:10px;margin-top:3px}.switch{position:relative;width:45px;height:25px}.switch input{display:none}.switch span{position:absolute;inset:0;background:#2b3745;border-radius:20px}.switch span:before{content:"";position:absolute;width:19px;height:19px;top:3px;left:3px;border-radius:50%;background:#fff;transition:.2s}.switch input:checked+span{background:#128fe9}.switch input:checked+span:before{transform:translateX(20px)}.maintenance-card{margin-top:14px;border:1px solid #1e3449;background:#0b1723;border-radius:12px;padding:13px}.maintenance-status{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800}.status-dot{width:9px;height:9px;border-radius:50%;background:#20c77a;box-shadow:0 0 10px rgba(32,199,122,.45)}.maintenance-meta{color:#7f90a4;font-size:10px;line-height:1.5;margin-top:5px}.maintenance-actions{display:flex;gap:7px;margin-top:10px}.maintenance-actions button{flex:1;padding:8px;border-radius:8px;border:1px solid #294057;background:#101d2a;color:#dce7f3;font-size:10px;font-weight:800}.maintenance-actions button.primary-maint{background:#128fe9;border-color:#128fe9;color:#fff}.security-note{margin-top:9px;color:#718196;font-size:9px;line-height:1.45}.legal-content{font-size:12px;line-height:1.7;color:#b8c4d2}.legal-content h3{color:#fff;margin:15px 0 6px}.legal-content p{margin-bottom:7px}
+
+.sidebar-overlay{display:none}.mobile-bottom{display:none}
+
+@media(max-width:1150px){.grid{grid-template-columns:repeat(4,minmax(145px,1fr))}.categories{grid-template-columns:repeat(6,1fr)}}
+@media(max-width:800px){
+ .sidebar{transform:translateX(-100%);transition:.2s}.sidebar.open{transform:translateX(0)}.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:19}.sidebar-overlay.show{display:block}.main{margin-left:0;width:100%}.mobile-menu{display:block}.topbar{padding:10px 12px}.top-actions .lang{display:none}.content{padding:12px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.categories{display:flex}.category-card{min-width:94px}.hero{min-height:250px}.hero-copy{padding:27px 22px}.footer-grid{grid-template-columns:1fr 1fr}
+ .mobile-bottom{position:fixed;display:flex;left:0;right:0;bottom:0;height:58px;background:rgba(5,10,17,.96);border-top:1px solid var(--line);z-index:30;justify-content:space-around}.mobile-bottom button{background:none;border:0;color:#8190a1;font-size:10px}.mobile-bottom button.active{color:#22a4ff}
+}
+@media(max-width:480px){.topbar{height:62px}.search-wrap input{height:38px}.hero{min-height:245px}.hero h1{font-size:32px}.hero-art:before{right:-50px}.grid{gap:8px}.cover{height:125px}.app-grid .cover{height:90px}.footer-grid{grid-template-columns:1fr 1fr}.content{padding-bottom:70px}}
+#maintenanceModal,#maintenancePanel,.maintenance-panel,.maintenance-controls{display:none!important}\n
+/* Game Hub v3.0 polish */
+:root{--glass:rgba(10,20,31,.78);--shadow:0 18px 50px rgba(0,0,0,.28)}
+body{background:radial-gradient(circle at 75% -10%,#102b44 0,#050a11 35%,#03070c 100%)}
+.topbar{box-shadow:0 8px 30px rgba(0,0,0,.18)}
+.hero{box-shadow:var(--shadow)}
+.hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 55%,rgba(36,167,255,.08),transparent 80%)}
+.card{box-shadow:0 8px 25px rgba(0,0,0,.14);position:relative;contain:layout paint style}.card:hover{transform:translate3d(0,-3px,0)}
+.card:hover{box-shadow:0 15px 38px rgba(0,0,0,.3)}
+.card-tools{position:absolute;right:8px;top:8px;z-index:5;display:flex;gap:5px}
+.fav-btn{width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(3,9,15,.72);color:#d6e0eb;font-size:15px;backdrop-filter:blur(7px)}
+.fav-btn.active{color:#ffcf24;border-color:#765e18}
+.card-click{cursor:pointer}
+.download{transition:.15s}.download:active{transform:scale(.98)}
+.quickbar{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 18px}
+.quick-chip{border:1px solid #24384c;background:#0a1420;color:#b9c8d8;border-radius:999px;padding:7px 11px;font-size:10px;font-weight:800}
+.quick-chip.active{background:#0d75c8;color:#fff;border-color:#168fe8}
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:0 0 20px}
+.stat{background:linear-gradient(145deg,#0b1724,#08111a);border:1px solid #1c3043;border-radius:12px;padding:11px 13px}
+.stat b{font-size:18px}.stat small{display:block;color:#718399;font-size:9px;margin-top:2px}
+.details-box{width:min(650px,100%);max-height:88vh;overflow:auto;background:#0c1723;border:1px solid #2a4055;border-radius:20px;padding:20px;box-shadow:0 30px 90px #000}
+.details-cover{height:170px;border-radius:14px;background:linear-gradient(135deg,#16314a,#0a131e);display:grid;place-items:center;font-size:70px;margin-bottom:15px}
+.details-title{font-size:24px}.details-sub{color:#8ea0b4;font-size:11px;margin:4px 0 13px}
+.details-tags{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.details-tags span{background:#111f2d;border:1px solid #22384b;border-radius:999px;padding:6px 9px;color:#b8c7d7;font-size:10px}
+.details-actions{display:flex;gap:8px;margin-top:16px}.details-actions button{flex:1}
+#maintenanceModal,.maintenance-panel,.maintenance-controls{display:none!important}
+.maintenance-card{display:none!important}
+@media(max-width:600px){.stats-strip{grid-template-columns:repeat(2,1fr)}.details-actions{flex-direction:column}}
+
+
+/* Performance / smoothness */
+html{scroll-behavior:auto}
+.card,.category-card,.hero,.section,.seo-intro{contain:layout paint}
+.card{content-visibility:auto;contain-intrinsic-size:260px 210px}
+.app-grid .card{contain-intrinsic-size:220px 175px}
+.cover,.hero-art{contain:paint}
+.topbar{backdrop-filter:none;-webkit-backdrop-filter:none}
+.modal{backdrop-filter:none;-webkit-backdrop-filter:none}
+.sidebar{overscroll-behavior:contain}
+.grid,.categories{contain:layout style}
+@media (hover:hover){
+  .card{transition:transform .12s ease,border-color .12s ease}
+  .card:hover{transform:translateY(-2px)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+}
+@media (max-width:800px){
+  .topbar{background:#07101a}
+  .modal{background:rgba(0,0,0,.82)}
+  .hero-art:before{opacity:.55}
+}
+
+/* Owner-only statistics */
+.stats-strip{display:none!important}
+.owner-unlock-note{display:none!important}
+
+
+/* SMART AI CENTER */
+.ai-center{margin-top:14px;border:1px solid #21415a;background:linear-gradient(180deg,#0b1927,#08121d);border-radius:14px;padding:14px}
+.ai-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ai-head strong{font-size:13px}.ai-head small{display:block;color:#7890a6;font-size:9px;margin-top:3px}
+.ai-badge{font-size:9px;border:1px solid #275a79;background:#0c2b3e;color:#62c8ff;border-radius:999px;padding:5px 8px}
+.ai-health{display:flex;align-items:center;gap:9px;margin-top:12px;padding:9px 10px;border:1px solid #20374b;border-radius:10px;background:#08131f}
+.ai-health-dot{width:9px;height:9px;border-radius:50%;background:#25d38a;box-shadow:0 0 12px rgba(37,211,138,.45)}
+.ai-health-dot.warn{background:#ffc34d;box-shadow:0 0 12px rgba(255,195,77,.35)}
+.ai-health-dot.bad{background:#ff6262;box-shadow:0 0 12px rgba(255,98,98,.35)}
+.ai-health b{font-size:11px}.ai-health span{display:block;color:#7890a6;font-size:9px;margin-top:2px}
+.ai-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}
+.ai-actions button{padding:9px;border-radius:9px;border:1px solid #29445a;background:#101f2d;color:#dce8f3;font-size:10px;font-weight:800}
+.ai-actions .ai-primary{background:#128fe9;border-color:#128fe9;color:#fff}
+.ai-report{margin-top:9px;max-height:150px;overflow:auto;color:#9fb0c1;font-size:9px;line-height:1.55;background:#07101a;border:1px solid #182b3d;border-radius:9px;padding:9px;white-space:pre-line}
+.ai-foot{margin-top:8px;color:#617489;font-size:8px;line-height:1.45}
+@media(max-width:480px){.ai-actions{grid-template-columns:1fr}.ai-report{max-height:180px}}
+
+
+/* ===== Game Hub v1.2 THEME ENGINE ===== */
+html[data-theme="dark"]{color-scheme:dark}
+html[data-theme="light"]{color-scheme:light}
+body{
+  background:radial-gradient(circle at 75% -10%,#102b44 0,#050a11 35%,#03070c 100%);
+  color:var(--text);
+}
+body.noanim *,body.noanim *::before,body.noanim *::after{
+  animation:none!important;transition:none!important;scroll-behavior:auto!important;
+}
+body.theme-light{
+  --bg:#f4f7fb;--sidebar:#ffffff;--panel:#ffffff;--panel2:#eef3f8;
+  --line:#d7e0ea;--text:#17212b;--muted:#5f6f7f;--blue:#087fe0;
+  --blue2:#138fda;--purple:#6557db;--gold:#b78100;
+  background:#f4f7fb!important;color:#17212b!important;
+}
+body.theme-light .sidebar{background:linear-gradient(180deg,#fff,#f5f8fb)!important;border-right-color:#d7e0ea!important}
+body.theme-light .topbar{background:rgba(255,255,255,.96)!important;border-bottom-color:#d7e0ea!important}
+body.theme-light .search-wrap input{background:#fff!important;color:#17212b!important;border-color:#cbd6e2!important}
+body.theme-light .search-wrap input::placeholder{color:#738296}
+body.theme-light .nav button{color:#334457}
+body.theme-light .nav button:hover{background:#edf4fa}
+body.theme-light .nav button.active{background:linear-gradient(90deg,#087fe0,#0d68b0);color:#fff}
+body.theme-light .cat{color:#3d4e60}
+body.theme-light .cat:hover,body.theme-light .cat.active{background:#edf4fa;color:#17212b}
+body.theme-light .seo-intro,body.theme-light .card,body.theme-light .category-card,
+body.theme-light .stat,body.theme-light .quick-chip,body.theme-light .hero,
+body.theme-light .settings-box,body.theme-light .details-box,body.theme-light .ai-center,
+body.theme-light .ai-health,body.theme-light .ai-report{
+  background:var(--panel)!important;border-color:#d7e0ea!important;color:var(--text)!important;
+}
+body.theme-light .hero{
+  background:linear-gradient(90deg,#eaf2f9 0%,rgba(239,246,251,.9) 35%,rgba(239,246,251,.2) 72%),linear-gradient(135deg,#dbe7f1,#f8fbfd)!important;
+}
+body.theme-light .hero p,body.theme-light .seo-intro,body.theme-light .meta,
+body.theme-light .ai-head small,body.theme-light .ai-health span,body.theme-light .details-sub,
+body.theme-light .legal-content,body.theme-light .sidebar-footer,body.theme-light footer,
+body.theme-light .footer-grid p{color:#5f6f7f!important}
+body.theme-light .hero h1,body.theme-light .section-title,body.theme-light .card h3,
+body.theme-light .settings-head h2,body.theme-light .footer-brand,body.theme-light .footer-grid h4{color:#17212b!important}
+body.theme-light .secondary,body.theme-light .top-actions button,body.theme-light .mobile-menu,
+body.theme-light .close,body.theme-light .ai-actions button,body.theme-light .details-tags span{
+  background:#f3f7fa!important;color:#25384b!important;border-color:#cbd7e2!important;
+}
+body.theme-light .modal{background:rgba(20,32,45,.38)!important}
+body.theme-light .mobile-bottom{background:rgba(255,255,255,.97)!important;border-top-color:#d7e0ea!important}
+body.theme-light .mobile-bottom button{color:#637487}
+body.theme-light .mobile-bottom button.active{color:#087fe0}
+@media(max-width:800px){body.theme-light .topbar{background:#fff!important}}
+
+
+/* ===== v1.3.1 Admin Security + Performance ===== */
+.security-banner{border:1px solid #21445d;background:#091925;border-radius:11px;padding:11px 12px;color:#9eb2c5;font-size:10px;line-height:1.5;margin-bottom:10px}
+.security-banner b{color:#dceaf5;font-size:12px}.admin-form{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.admin-form input,.admin-form select{width:100%;padding:9px;border:1px solid #294057;border-radius:9px;background:#0b1622;color:#eaf2fb;outline:none}.admin-form input:focus,.admin-form select:focus{border-color:#159cff;box-shadow:0 0 0 2px rgba(21,156,255,.1)}
+.admin-tools{display:flex;gap:8px;margin-top:10px}.admin-tools button{flex:1;padding:8px;border:1px solid #294057;border-radius:8px;background:#101d2a;color:#dce7f3;font-size:10px;font-weight:800}.admin-list{margin-top:12px;max-height:260px;overflow:auto;border-top:1px solid #203246}.admin-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid #1d2d3f}.admin-item b{font-size:10px}.admin-item small{display:block;color:#718399;font-size:8px;margin-top:2px}.admin-item button{border:1px solid #31465b;background:#101d2a;color:#dce7f3;border-radius:7px;padding:5px 7px;font-size:9px}.admin-item button.danger{color:#ff9a9a;border-color:#5b3030}
+body.theme-light .security-banner{background:#f3f7fa;border-color:#ccd9e5;color:#5f6f7f}body.theme-light .security-banner b{color:#17212b}body.theme-light .admin-form input,body.theme-light .admin-form select{background:#fff;color:#17212b;border-color:#cbd7e2}body.theme-light .admin-tools button,body.theme-light .admin-item button{background:#f3f7fa;color:#25384b;border-color:#cbd7e2}
+@media(max-width:600px){.admin-form{grid-template-columns:1fr}.admin-tools{flex-direction:column}}
+
+</style>
+<style id="silent-ai-style">
+/* AI is a silent background service: never expose its controls/status to visitors. */
+.settings-box > .reset { display:none !important; }
+</style>
+<script>
+(function(){
+  try{
+    var t=localStorage.getItem("ghTheme");
+    if(t!=="light"&&t!=="dark")t=localStorage.getItem("ghDark")==="false"?"light":"dark";
+    document.documentElement.setAttribute("data-theme",t);
+  }catch(e){document.documentElement.setAttribute("data-theme","dark")}
+})();
+</script>
+</head>
+<body>
+
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="brand" id="gameHubAdminLogo" role="button" tabindex="0" aria-label="Game Hub"><div class="brand-mark"><svg class="brand-svg" viewBox="0 0 64 64" aria-hidden="true">
+  <defs>
+    <linearGradient id="logoG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17a9ff"/>
+      <stop offset="1" stop-color="#665cff"/>
+    </linearGradient>
+  </defs>
+  <path d="M18 21h28c7 0 13 6 13 13v5c0 7-5 12-11 12-5 0-8-4-11-7l-2-2-2 2c-3 3-6 7-11 7-6 0-11-5-11-12v-5c0-7 3-13 10-13z" fill="url(#logoG)"/>
+  <path d="M22 35h10M27 30v10" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="43" cy="32" r="3" fill="#fff"/><circle cx="49" cy="38" r="3" fill="#fff"/>
+</svg></div><div><b>GAME<span>HUB</span></b><small>Games & Apps for Android</small></div></div>
+  <div class="nav">
+    <button type="button" class="active" onclick="showMode('all',this,event)">🏠 <span>Home</span></button>
+    <button type="button" onclick="showMode('games',this,event)">🎮 <span>Games</span></button>
+    <button type="button" onclick="showMode('apps',this,event)">▦ <span>Apps</span></button>
+    <button type="button" onclick="event.stopPropagation();scrollToSection('categories');closeSidebar()">📁 <span>Categories</span></button>
+    <button type="button" onclick="event.stopPropagation();setFilter('trending',this,event)">🔥 <span>Trending</span></button>
+    <button type="button" onclick="event.stopPropagation();setFilter('latest',this,event)">◷ <span>Latest</span></button>
+  </div>
+  <div class="side-title">Categories</div>
+  <div id="sideCats"></div>
+  <div class="sidebar-footer">Original website UI • Verify every third-party listing and download source before publishing.</div>
+</aside>
+
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<main class="main">
+<header class="topbar">
+  <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+  <div class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="Search games, apps..." oninput="render()"></div>
+  <div class="top-actions">
+    <button class="round" id="themeBtn" onclick="toggleTheme()" title="Switch theme" aria-label="Switch theme">☾</button>
+    <button class="lang">🌐 English⌄</button>
+    <button class="round" onclick="openSettings()">⚙️</button>
+  </div>
+</header>
+
+<div class="content">
+<section class="hero">
+  <div class="hero-art"></div>
+  <div class="hero-copy">
+    <span class="hero-badge">🔥 Trending</span>
+    <h1>Discover <span>Games</span><br>& Apps</h1>
+    <p>Find games and useful apps and install them through official app stores.</p>
+    <div class="hero-actions"><button class="primary" onclick="scrollToSection('trending')">Explore Now ↓</button><button class="secondary" onclick="showMode('games',document.querySelectorAll('.nav button')[1])">View Games</button></div>
+  </div>
+</section>
+
+<section class="seo-intro" aria-labelledby="about-game-hub">
+  <h2 id="about-game-hub">Android Games &amp; Apps on Game Hub</h2>
+  <p>Game Hub helps Android users discover games and useful apps in one place. Browse game genres and app categories, explore trending and latest listings, and check version, Android compatibility and file-size information before choosing a listing.</p>
+  <p>Use the search bar to find a title quickly, or open <button type="button" onclick="showMode('games',document.querySelectorAll('.nav button')[1])">Games</button> and <button type="button" onclick="showMode('apps',document.querySelectorAll('.nav button')[2])">Apps</button> to browse each collection.</p>
+</section>
+
+<div class="stats-strip owner-only-stats" aria-label="Private owner statistics" aria-hidden="true">
+ <div class="stat"><b id="statTotal">0</b><small>Total listings</small></div>
+ <div class="stat"><b id="statGames">0</b><small>Games</small></div>
+ <div class="stat"><b id="statApps">0</b><small>Apps</small></div>
+ <div class="stat"><b id="statFav">0</b><small>Favorites</small></div>
+</div>
+<div class="quickbar" aria-label="Quick filters">
+ <button class="quick-chip active" data-qf="all" onclick="quickFilter('all',this)">All</button>
+ <button class="quick-chip" data-qf="trending" onclick="quickFilter('trending',this)">🔥 Trending</button>
+ <button class="quick-chip" data-qf="latest" onclick="quickFilter('latest',this)">✨ Latest</button>
+ <button class="quick-chip" data-qf="favorites" onclick="quickFilter('favorites',this)">★ Favorites</button>
+</div>
+
+<section class="section" id="categories">
+ <div class="section-head"><h2 class="section-title">🎮 Popular Categories</h2><button class="view" onclick="renderCategories()">View All →</button></div>
+ <div class="categories" id="categoriesGrid"></div>
+</section>
+
+<section class="section" id="trending">
+ <div class="section-head"><h2 class="section-title"><span id="gameSectionIcon">🎮</span> <span id="gameSectionTitle">Trending Games</span> <small id="categoryStatus" style="font-size:11px;color:#6f8196;font-weight:500"></small></h2><button class="view" onclick="setFilter('trending',document.querySelector('[data-filter=trending]'))">View All →</button></div>
+ <div class="grid" id="gameGrid"></div>
+</section>
+
+<section class="section" id="apps">
+ <div class="section-head"><h2 class="section-title">▦ <span id="appSectionTitle">Popular Apps</span></h2><button class="view" onclick="showMode('apps',document.querySelectorAll('.nav button')[2])">View All →</button></div>
+ <div class="grid app-grid" id="appGrid"></div>
+</section>
+
+<footer>
+ <div class="footer-grid">
+  <div><div class="footer-brand"><span class="footer-logo"><svg class="brand-svg" viewBox="0 0 64 64" aria-hidden="true">
+  <defs>
+    <linearGradient id="logoGFooter" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17a9ff"/>
+      <stop offset="1" stop-color="#665cff"/>
+    </linearGradient>
+  </defs>
+  <path d="M18 21h28c7 0 13 6 13 13v5c0 7-5 12-11 12-5 0-8-4-11-7l-2-2-2 2c-3 3-6 7-11 7-6 0-11-5-11-12v-5c0-7 3-13 10-13z" fill="url(#logoGFooter)"/>
+  <path d="M22 35h10M27 30v10" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="43" cy="32" r="3" fill="#fff"/><circle cx="49" cy="38" r="3" fill="#fff"/>
+</svg></span> GAME<span>HUB</span></div><p style="margin-top:8px">Games & Apps discovery platform.</p><p>Fast • Clean • Official-store links</p></div>
+  <div><h4>Quick Links</h4><button onclick="showMode('all',document.querySelector('.nav button'))">Home</button><button onclick="showMode('games',document.querySelectorAll('.nav button')[1])">Games</button><button onclick="showMode('apps',document.querySelectorAll('.nav button')[2])">Apps</button></div>
+  <div><h4>Legal</h4><button onclick="openLegal('privacy')">Privacy Policy</button><button onclick="openLegal('terms')">Terms of Use</button><button onclick="openLegal('copyright')">Copyright</button></div>
+  <div><h4>Support</h4><button onclick="openLegal('contact')">Contact Us</button><button onclick="openLegal('disclaimer')">Disclaimer</button></div>
+ </div>
+ <div class="legal-links"><span>© 2026 Game Hub • v1.3.1</span><button onclick="openLegal('privacy')">Privacy</button><button onclick="openLegal('terms')">Terms</button><button onclick="openLegal('copyright')">Copyright</button><button onclick="openLegal('disclaimer')">Disclaimer</button></div>
+</footer>
+</div>
+</main>
+</div>
+
+<div class="mobile-bottom"><button class="active" onclick="scrollToSection('top')">⌂<br>Home</button><button type="button" onclick="showMode('games',document.querySelectorAll('.nav button')[1],event)">🎮<br>Games</button><button type="button" onclick="showMode('apps',document.querySelectorAll('.nav button')[2],event)">▦<br>Apps</button><button onclick="scrollToSection('categories')">☷<br>Categories</button><button onclick="openSettings()">⚙<br>Settings</button></div>
+
+
+<div class="modal" id="adminModal" onclick="closeAdmin(event)">
+ <div class="settings-box admin-box">
+  <div class="settings-head"><div><h2>🔐 Game Hub Admin</h2><p id="adminSessionMeta">Protected owner controls</p></div><button class="close" type="button" onclick="forceCloseAdmin();return false;">✕</button></div>
+  <div id="adminGate">
+   <div class="security-banner">🛡️ <b>Local Admin Lock</b><br><span>Uses a SHA-256 PIN hash, session timeout and failed-attempt lockout. This protects the browser UI only; real production security requires server-side authentication.</span></div>
+   <div class="setting-row"><div><strong>Admin PIN</strong><small id="adminPinHint">Set a PIN for this device.</small></div><input id="adminPin" type="password" inputmode="numeric" autocomplete="new-password" maxlength="12" placeholder="4–12 digits" style="max-width:160px;padding:9px;border:1px solid #294057;border-radius:9px;background:#0b1622;color:#fff"></div>
+   <div class="maintenance-actions"><button class="primary-maint" onclick="adminAuthenticate()">Unlock Admin</button><button onclick="adminClearLock()">Reset Local Lock</button></div>
+   <div id="adminGateMsg" class="security-note"></div>
+  </div>
+  <div id="adminPanel" style="display:none">
+   <div class="security-banner">✅ <b>Admin session active</b><br><span id="adminCountdown">Session expires automatically.</span></div>
+   <div class="admin-form">
+    <input id="admName" placeholder="Game / App name" maxlength="80">
+    <select id="admType"><option value="game">Game</option><option value="app">App</option></select>
+    <input id="admCat" placeholder="Category" maxlength="40">
+    <input id="admVersion" placeholder="Version" maxlength="30">
+    <input id="admAndroid" placeholder="Android requirement" maxlength="30">
+    <input id="admSize" placeholder="Size" maxlength="30">
+    <input id="admSource" placeholder="Official source URL" maxlength="300">
+    <input id="admIcon" placeholder="Icon emoji" maxlength="4">
+   </div>
+   <div class="maintenance-actions"><button class="primary-maint" onclick="adminAddListing()">＋ Add Listing</button><button onclick="adminLock()">🔒 Lock Now</button></div>
+   <div class="admin-tools"><button onclick="adminExportCatalog()">Export Catalog</button><button onclick="adminResetCatalog()">Reset Local Changes</button></div>
+   <div id="adminList" class="admin-list"></div>
+  </div>
+ </div>
+</div>
+
+<div class="modal" id="detailsModal" onclick="closeDetails(event)">
+ <div class="details-box">
+  <div class="settings-head"><div><h2>App / Game Details</h2><p>Official-source information</p></div><button class="close" onclick="closeDetails()">✕</button></div>
+  <div id="detailsContent"></div>
+ </div>
+</div>
+
+<div class="modal" id="settingsModal" onclick="closeSettings(event)">
+ <div class="settings-box">
+  <div class="settings-head"><div><h2>⚙️ Settings</h2><p>Customize your Game Hub</p></div><button class="close" onclick="closeSettings()">✕</button></div>
+  <div class="setting-row"><div><strong>Dark Mode</strong><small>Use the dark Game Hub theme</small></div><label class="switch"><input type="checkbox" id="darkToggle" checked onchange="toggleDark(this)"><span></span></label></div>
+  <div class="setting-row"><div><strong>Animations</strong><small>Enable card animations</small></div><label class="switch"><input type="checkbox" id="animToggle" checked onchange="toggleAnimations(this)"><span></span></label></div>
+  <div class="setting-row"><div><strong>Save Search</strong><small>Remember search preferences on this device</small></div><label class="switch"><input type="checkbox" id="saveToggle" onchange="toggleSave(this)"><span></span></label></div>
+  <div class="setting-row" id="adminControlRow" style="display:none"><div><strong>🔐 Admin Control</strong><small>Owner-only local control panel with session lock and failed-attempt protection</small></div><button class="secondary" type="button" onclick="openAdminGate()" style="padding:8px 12px">Open Admin</button></div>
+  
+<div class="ai-center" id="smartAICenter" style="display:none">
+  <div class="ai-head">
+    <div><strong>🧠 Smart AI Security Center</strong><small>Security, health, repair & performance controls</small></div>
+    <span class="ai-badge">LOCAL AI</span>
+  </div>
+  <div class="ai-health">
+    <i class="ai-health-dot" id="aiHealthDot"></i>
+    <div><b id="aiHealthTitle">Ready to scan</b><span id="aiHealthMeta">No scan has been run yet.</span></div>
+  </div>
+  <div class="ai-actions">
+    <button class="ai-primary" onclick="runSmartAIScan()">🔍 AI Scan</button>
+    <button onclick="runSmartAIRepair()">🛠️ AI Repair</button>
+    <button onclick="runSmartAIPerformance()">⚡ Performance</button>
+    <button onclick="runSmartAIRecommendations()">💡 AI Improve</button>
+    <button onclick="runSmartAIReset()">↻ Safe Reset</button>
+    <button onclick="exportAIReport()">⬇️ Report</button>
+  </div>
+  <div class="ai-report" id="aiReport">Smart AI checks the page structure, catalog metadata, storage settings, risky URL patterns and basic performance signals. It does not claim to detect malware inside remote APK files.</div>
+  <div class="ai-foot">Local browser checks only. For real server/APK malware scanning, use a server-side security scanner and independent review. Automated static analysis can miss issues and can produce false positives. </div>
+</div>
+  <button class="reset" onclick="resetSettings()">Reset Settings</button>
+ </div>
+</div>
+
+
+
+<script>
+const items=[{name:"Minesweeper - Antimine",type:"game",cat:"Puzzle",icon:"💣",trending:true,latest:true,version:"17.6.3 F",android:"Android 5.0+",size:"9 MB",download:"official-store",source:"https://f-droid.org/en/packages/dev.lucanlm.antimine/"},
+ {name:"Colorgram",type:"game",cat:"Puzzle",icon:"🎨",trending:true,latest:true,version:"1.0.1",android:"Android 5.0+",size:"~5 MB",download:"official-store",source:"https://f-droid.org/en/packages/com.sidhant.colorgram/"},
+ {name:"Binary Puzzle",type:"game",cat:"Puzzle",icon:"🔢",trending:false,latest:true,version:"1.0.1",android:"Android 7.0+",size:"~1 MB",download:"official-store",source:"https://f-droid.org/en/packages/com.sidhant.binarypuzzle/"},
+ {name:"F-Droid",type:"app",cat:"Tools",icon:"📦",trending:true,latest:true,version:"2.0.1",android:"Android 7.0+",size:"11 MB",download:"official-store",source:"https://f-droid.org/packages/org.fdroid.fdroid/"},
+ {name:"Shadow Arena",type:"game",cat:"Action",icon:"⚔️",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Speed Legends",type:"game",cat:"Racing",icon:"🏎️",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Battle Zone",type:"game",cat:"Shooter",icon:"🎯",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Puzzle World",type:"game",cat:"Puzzle",icon:"🧩",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Photo Studio",type:"app",cat:"Photography",icon:"📸",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"File Manager",type:"app",cat:"Tools",icon:"📁",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Music Player",type:"app",cat:"Music",icon:"🎵",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Video Editor",type:"app",cat:"Video",icon:"🎬",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},{name:"Sky Warriors",type:"game",cat:"Action",icon:"✈️",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Drift Rush",type:"game",cat:"Racing",icon:"🏁",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Kingdom Quest",type:"game",cat:"Adventure",icon:"🏰",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Galaxy Raiders",type:"game",cat:"Arcade",icon:"🚀",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Farm Life",type:"game",cat:"Simulation",icon:"🌾",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Chess Master",type:"game",cat:"Board",icon:"♟️",trending:false,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Zombie Escape",type:"game",cat:"Survival",icon:"🧟",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Football Stars",type:"game",cat:"Sports",icon:"⚽",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Word Challenge",type:"game",cat:"Puzzle",icon:"🔤",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Dungeon Heroes",type:"game",cat:"RPG",icon:"🛡️",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Tower Defense",type:"game",cat:"Strategy",icon:"🏯",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Mini Golf",type:"game",cat:"Sports",icon:"⛳",trending:false,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Ocean Explorer",type:"game",cat:"Adventure",icon:"🌊",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Space Miner",type:"game",cat:"Arcade",icon:"🪐",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Car Parking Pro",type:"game",cat:"Simulation",icon:"🚗",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Ninja Dash",type:"game",cat:"Action",icon:"🥷",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Brain Blocks",type:"game",cat:"Puzzle",icon:"🧠",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Battle Cards",type:"game",cat:"Strategy",icon:"🃏",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Snow Rider",type:"game",cat:"Racing",icon:"🏂",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Island Survival",type:"game",cat:"Survival",icon:"🏝️",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+
+ {name:"Notes Pro",type:"app",cat:"Productivity",icon:"📝",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Weather Now",type:"app",cat:"Weather",icon:"☁️",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"QR Scanner",type:"app",cat:"Tools",icon:"▦",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Calculator Plus",type:"app",cat:"Tools",icon:"🧮",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Calendar Planner",type:"app",cat:"Productivity",icon:"📅",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"PDF Reader",type:"app",cat:"Documents",icon:"📄",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Voice Recorder",type:"app",cat:"Audio",icon:"🎙️",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Gallery Lite",type:"app",cat:"Photography",icon:"🖼️",trending:false,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Password Vault",type:"app",cat:"Security",icon:"🔐",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Task Manager",type:"app",cat:"Productivity",icon:"✅",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Cloud Notes",type:"app",cat:"Storage",icon:"☁️",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Unit Converter",type:"app",cat:"Tools",icon:"📐",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Expense Tracker",type:"app",cat:"Finance",icon:"💰",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Dictionary",type:"app",cat:"Education",icon:"📚",trending:false,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Study Timer",type:"app",cat:"Education",icon:"⏱️",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Wallpaper Studio",type:"app",cat:"Personalization",icon:"🌌",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Zip Manager",type:"app",cat:"Tools",icon:"🗜️",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"News Reader",type:"app",cat:"News",icon:"📰",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Barcode Scanner",type:"app",cat:"Tools",icon:"🏷️",trending:false,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Simple Browser",type:"app",cat:"Internet",icon:"🌐",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Neon Fighters",type:"game",cat:"Action",icon:"🥊",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Turbo Circuit",type:"game",cat:"Racing",icon:"🏎️",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Mystic Lands",type:"game",cat:"Adventure",icon:"🗺️",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Pixel Defender",type:"game",cat:"Strategy",icon:"🛡️",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Street Hoops",type:"game",cat:"Sports",icon:"🏀",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Ocean Survival",type:"game",cat:"Survival",icon:"🌊",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Block Builder",type:"game",cat:"Simulation",icon:"🧱",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Brain Grid",type:"game",cat:"Puzzle",icon:"🧠",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Galaxy Runner",type:"game",cat:"Arcade",icon:"🌌",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Kingdom Tactics",type:"game",cat:"Strategy",icon:"🏰",trending:false,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Quick Notes",type:"app",cat:"Productivity",icon:"📝",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Gallery Plus",type:"app",cat:"Photography",icon:"🖼️",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Smart Calculator",type:"app",cat:"Tools",icon:"🧮",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Daily Weather",type:"app",cat:"Weather",icon:"🌤️",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Task Planner",type:"app",cat:"Productivity",icon:"📋",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Podcast Player",type:"app",cat:"Music",icon:"🎙️",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Video Compressor",type:"app",cat:"Video",icon:"🎞️",trending:true,latest:false,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Study Planner",type:"app",cat:"Education",icon:"🎓",trending:true,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"Secure Vault",type:"app",cat:"Security",icon:"🔐",trending:false,latest:true,version:"Latest",android:"See store",size:"See store",download:"official-store"},
+ {name:"QR Quick Scan",type:"app",cat:"Tools",icon:"▦",trending:true,latest:true,version:"2.2.0",android:"Android 7.0+",size:"15 MB",download:"official-store"},{name:"Roblox",type:"game",cat:"Adventure",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🧱",download:"official-store"},
+{name:"Free Fire MAX",type:"game",cat:"Action",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🔥",download:"official-store"},
+{name:"Call of Duty: Mobile",type:"game",cat:"Shooter",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎯",download:"official-store"},
+{name:"Clash Royale",type:"game",cat:"Strategy",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"👑",download:"official-store"},
+{name:"Clash of Clans",type:"game",cat:"Strategy",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"⚔️",download:"official-store"},
+{name:"Subway Surfers",type:"game",cat:"Arcade",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🚇",download:"official-store"},
+{name:"8 Ball Pool",type:"game",cat:"Sports",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎱",download:"official-store"},
+{name:"Brawl Stars",type:"game",cat:"Action",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"⭐",download:"official-store"},
+{name:"eFootball",type:"game",cat:"Sports",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"⚽",download:"official-store"},
+{name:"Dream League Soccer 2026",type:"game",cat:"Sports",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"⚽",download:"official-store"},
+{name:"Stumble Guys",type:"game",cat:"Arcade",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🏃",download:"official-store"},
+{name:"Pokémon GO",type:"game",cat:"Adventure",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"⚡",download:"official-store"},
+{name:"Minecraft",type:"game",cat:"Adventure",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"⛏️",download:"official-store"},
+{name:"Candy Crush Saga",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🍬",download:"official-store"},
+{name:"Royal Match",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"👑",download:"official-store"},
+{name:"Gardenscapes",type:"game",cat:"Casual",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🌳",download:"official-store"},
+{name:"Township",type:"game",cat:"Casual",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🏡",download:"official-store"},
+{name:"RAID: Shadow Legends",type:"game",cat:"RPG",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🛡️",download:"official-store"},
+{name:"Whiteout Survival",type:"game",cat:"Strategy",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"❄️",download:"official-store"},
+{name:"Block Blast!",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🧩",download:"official-store"},{name:"Ludo King",type:"game",cat:"Board",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎲",download:"official-store"},
+{name:"Cricket League",type:"game",cat:"Sports",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🏏",download:"official-store"},
+{name:"Real Cricket",type:"game",cat:"Sports",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🏏",download:"official-store"},
+{name:"Drive Zone: Car Simulator Game",type:"game",cat:"Racing",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🏎️",download:"official-store"},
+{name:"Doomsday: Undead Bride",type:"game",cat:"Strategy",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🧟",download:"official-store"},
+{name:"Idle Office Tycoon",type:"game",cat:"Simulation",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🏢",download:"official-store"},
+{name:"Pure Sniper",type:"game",cat:"Shooter",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎯",download:"official-store"},
+{name:"Last War: Survival Game",type:"game",cat:"Strategy",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🪖",download:"official-store"},
+{name:"MONOPOLY GO!",type:"game",cat:"Board",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎩",download:"official-store"},
+{name:"Super Sus",type:"game",cat:"Action",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🕵️",download:"official-store"},
+{name:"Animals & Coins",type:"game",cat:"Adventure",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🐾",download:"official-store"},
+{name:"Sea of Conquest",type:"game",cat:"Adventure",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🏴‍☠️",download:"official-store"},
+{name:"Sky Warriors",type:"game",cat:"Action",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"✈️",download:"official-store"},
+{name:"Honkai: Star Rail",type:"game",cat:"RPG",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🚄",download:"official-store"},
+{name:"Genshin Impact",type:"game",cat:"RPG",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"✨",download:"official-store"},
+{name:"Mobile Legends: Bang Bang",type:"game",cat:"Action",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"⚔️",download:"official-store"},
+{name:"DRAGON BALL LEGENDS",type:"game",cat:"Action",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🐉",download:"official-store"},
+{name:"Toca Boca World",type:"game",cat:"Casual",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🌎",download:"official-store"},
+{name:"Mario Kart Tour",type:"game",cat:"Racing",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🏁",download:"official-store"},
+{name:"Temple Run 2",type:"game",cat:"Arcade",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🏃",download:"official-store"},{name:"ChatGPT",type:"app",cat:"AI",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🤖",download:"official-store"},
+{name:"WhatsApp Messenger",type:"app",cat:"Communication",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"💬",download:"official-store"},
+{name:"Instagram",type:"app",cat:"Social",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"📸",download:"official-store"},
+{name:"Facebook",type:"app",cat:"Social",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"👥",download:"official-store"},
+{name:"PhonePe",type:"app",cat:"Finance",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"💳",download:"official-store"},
+{name:"Flipkart",type:"app",cat:"Shopping",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🛒",download:"official-store"},
+{name:"Meesho",type:"app",cat:"Shopping",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🛍️",download:"official-store"},
+{name:"Snapchat",type:"app",cat:"Social",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"👻",download:"official-store"},
+{name:"YouTube",type:"app",cat:"Video",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"▶️",download:"official-store"},
+{name:"Spotify",type:"app",cat:"Music",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎵",download:"official-store"},
+{name:"Netflix",type:"app",cat:"Entertainment",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎬",download:"official-store"},
+{name:"Amazon Shopping",type:"app",cat:"Shopping",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"📦",download:"official-store"},
+{name:"Prime Video",type:"app",cat:"Entertainment",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"📺",download:"official-store"},
+{name:"Google Chrome",type:"app",cat:"Browser",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🌐",download:"official-store"},
+{name:"Google Maps",type:"app",cat:"Travel",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🗺️",download:"official-store"},
+{name:"Google Drive",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"☁️",download:"official-store"},
+{name:"Google Docs",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"📄",download:"official-store"},
+{name:"Google Sheets",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"📊",download:"official-store"},
+{name:"Google Keep",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"📝",download:"official-store"},
+{name:"Google Calendar",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"📅",download:"official-store"},
+{name:"Microsoft Word",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"📝",download:"official-store"},
+{name:"Microsoft Excel",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"📈",download:"official-store"},
+{name:"Microsoft OneDrive",type:"app",cat:"Cloud",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"☁️",download:"official-store"},
+{name:"Microsoft Copilot",type:"app",cat:"AI",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"✨",download:"official-store"},
+{name:"Google Gemini",type:"app",cat:"AI",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"♊",download:"official-store"},
+{name:"Claude",type:"app",cat:"AI",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🧠",download:"official-store"},
+{name:"Perplexity",type:"app",cat:"AI",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🔎",download:"official-store"},
+{name:"Meta AI",type:"app",cat:"AI",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"✨",download:"official-store"},
+{name:"Canva",type:"app",cat:"Design",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎨",download:"official-store"},
+{name:"CapCut",type:"app",cat:"Video",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"✂️",download:"official-store"},
+{name:"KineMaster",type:"app",cat:"Video",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎞️",download:"official-store"},
+{name:"InShot",type:"app",cat:"Video",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎥",download:"official-store"},
+{name:"Adobe Acrobat Reader",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"📕",download:"official-store"},
+{name:"WPS Office",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"📚",download:"official-store"},
+{name:"DigiLocker",type:"app",cat:"Government",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🪪",download:"official-store"},
+{name:"MyJio",type:"app",cat:"Utilities",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"📱",download:"official-store"},
+{name:"LinkedIn",type:"app",cat:"Social",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"💼",download:"official-store"},
+{name:"Discord",type:"app",cat:"Communication",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎧",download:"official-store"},
+{name:"Pinterest",type:"app",cat:"Social",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"📌",download:"official-store"},
+{name:"X",type:"app",cat:"Social",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"𝕏",download:"official-store"},
+{name:"Delta Force",type:"game",cat:"Shooter",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎯",download:"official-store"},
+{name:"Among Us",type:"game",cat:"Action",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"👨‍🚀",download:"official-store"},
+{name:"Fortnite",type:"game",cat:"Action",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🪂",download:"official-store"},
+{name:"Pokémon UNITE",type:"game",cat:"Strategy",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"⚡",download:"official-store"},
+{name:"Sky: Children of the Light",type:"game",cat:"RPG",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🌌",download:"official-store"},
+{name:"Albion Online",type:"game",cat:"RPG",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🛡️",download:"official-store"},
+{name:"The Battle of Polytopia",type:"game",cat:"Strategy",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🏰",download:"official-store"},
+{name:"Geometry Dash Lite",type:"game",cat:"Arcade",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🔺",download:"official-store"},
+{name:"Homescapes",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🏠",download:"official-store"},
+{name:"Fishdom",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🐠",download:"official-store"},
+{name:"Royal Kingdom",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"👑",download:"official-store"},
+{name:"Magic Sort",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🪄",download:"official-store"},
+{name:"Meowdoku",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🐱",download:"official-store"},
+{name:"Vita Mahjong",type:"game",cat:"Board",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🀄",download:"official-store"},
+{name:"Mahjong Blast",type:"game",cat:"Board",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🀄",download:"official-store"},
+{name:"Candy Crush Soda Saga",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🍭",download:"official-store"},
+{name:"8 Ball Pool",type:"game",cat:"Sports",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎱",download:"official-store"},
+{name:"Cover Fire",type:"game",cat:"Shooter",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🔫",download:"official-store"},
+{name:"Bike Racing",type:"game",cat:"Racing",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🏍️",download:"official-store"},
+{name:"Truck Simulator: Europe",type:"game",cat:"Simulation",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🚚",download:"official-store"},
+{name:"Farming Simulator 18",type:"game",cat:"Simulation",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🚜",download:"official-store"},
+{name:"Harry Potter: Hogwarts Mystery",type:"game",cat:"Adventure",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🪄",download:"official-store"},
+{name:"Marvel Strike Force",type:"game",cat:"RPG",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🦸",download:"official-store"},
+{name:"Badminton League",type:"game",cat:"Sports",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🏸",download:"official-store"},
+{name:"Dream Cricket 2026",type:"game",cat:"Sports",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🏏",download:"official-store"},
+{name:"ScarFall 2.0",type:"game",cat:"Shooter",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🪖",download:"official-store"},
+{name:"An Elmwood Trail",type:"game",cat:"Adventure",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🕵️",download:"official-store"},
+{name:"FAU-G: Domination",type:"game",cat:"Action",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🪖",download:"official-store"},
+{name:"Golmaal Jr.",type:"game",cat:"Casual",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"😂",download:"official-store"},
+{name:"Star Chef 2",type:"game",cat:"Simulation",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"👨‍🍳",download:"official-store"},
+{name:"Clash Mini",type:"game",cat:"Strategy",version:"Latest",android:"See store",size:"See store",trending:false,latest:false,icon:"⚔️",download:"official-store"},
+{name:"Block Craft 3D",type:"game",cat:"Simulation",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🧱",download:"official-store"},
+{name:"Bowmasters",type:"game",cat:"Action",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🏹",download:"official-store"},
+{name:"Melon Sandbox",type:"game",cat:"Simulation",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🍉",download:"official-store"},
+{name:"Wordscapes",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🔤",download:"official-store"},
+{name:"Solitaire Classic",type:"game",cat:"Board",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🃏",download:"official-store"},
+{name:"Magic Tiles 3",type:"game",cat:"Music",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎹",download:"official-store"},
+{name:"The Room Three",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🔐",download:"official-store"},
+{name:"Monument Valley 2",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🏛️",download:"official-store"},
+{name:"Reigns",type:"game",cat:"Card",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"👑",download:"official-store"},
+{name:"Balatro",type:"game",cat:"Card",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🃏",download:"official-store"},
+{name:"Superliminal",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🌀",download:"official-store"},
+{name:"Sally Face",type:"game",cat:"Adventure",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🎭",download:"official-store"},
+{name:"TMNT: Shredder's Revenge",type:"game",cat:"Action",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🐢",download:"official-store"},
+{name:"DOOM",type:"game",cat:"Shooter",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"💥",download:"official-store"},
+{name:"DOOM II",type:"game",cat:"Shooter",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"💥",download:"official-store"},
+{name:"Township",type:"game",cat:"Simulation",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🏡",download:"official-store"},
+{name:"Happy Color",type:"game",cat:"Casual",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🎨",download:"official-store"},
+{name:"Last Cloudia",type:"game",cat:"RPG",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"✨",download:"official-store"},
+{name:"Dragons: Rise of Berk",type:"game",cat:"Simulation",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🐉",download:"official-store"},
+{name:"Offline Games - No Wifi Games",type:"game",cat:"Casual",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎮",download:"official-store"},
+{name:"Royal Smash!",type:"game",cat:"Casual",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"💥",download:"official-store"},
+{name:"Avatar World",type:"game",cat:"Role Playing",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🌍",download:"official-store"},
+{name:"My Talking Tom 2",type:"game",cat:"Casual",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🐱",download:"official-store"},
+{name:"My Talking Angela 2",type:"game",cat:"Casual",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🐾",download:"official-store"},
+{name:"Block Blast!",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🧩",download:"official-store"},
+{name:"Subway Princess Runner",type:"game",cat:"Arcade",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🏃",download:"official-store"},
+{name:"Spider Fighter 3",type:"game",cat:"Action",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🕷️",download:"official-store"},
+{name:"Hunter Assassin",type:"game",cat:"Action",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🥷",download:"official-store"},
+{name:"Temple Run 2",type:"game",cat:"Arcade",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🏃",download:"official-store"},
+{name:"Candy Crush Saga",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🍬",download:"official-store"},
+{name:"Pokémon GO",type:"game",cat:"Adventure",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"⚡",download:"official-store"},
+{name:"Match Factory!",type:"game",cat:"Puzzle",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🏭",download:"official-store"},
+{name:"Bluey: Let's Play!",type:"game",cat:"Casual",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🐶",download:"official-store"},
+{name:"Toca Boca World",type:"game",cat:"Casual",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🌎",download:"official-store"},
+{name:"EA SPORTS FC Mobile",type:"game",cat:"Sports",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"⚽",download:"official-store"},
+{name:"Call of Duty: Mobile",type:"game",cat:"Shooter",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎯",download:"official-store"},
+{name:"8 Ball Pool",type:"game",cat:"Sports",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎱",download:"official-store"},
+{name:"Stumble Guys",type:"game",cat:"Arcade",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🏃",download:"official-store"},
+{name:"Brawl Stars",type:"game",cat:"Action",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"⭐",download:"official-store"},
+{name:"Ludo King",type:"game",cat:"Board",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎲",download:"official-store"},
+{name:"eFootball",type:"game",cat:"Sports",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"⚽",download:"official-store"},
+{name:"Clash of Clans",type:"game",cat:"Strategy",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"⚔️",download:"official-store"},
+{name:"Roblox",type:"game",cat:"Adventure",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🧱",download:"official-store"},
+{name:"Instagram Lite",type:"app",cat:"Social",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"📸",download:"official-store"},
+{name:"Facebook Lite",type:"app",cat:"Social",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"👥",download:"official-store"},
+{name:"Messenger",type:"app",cat:"Communication",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"💬",download:"official-store"},
+{name:"Telegram",type:"app",cat:"Communication",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"✈️",download:"official-store"},
+{name:"Gmail",type:"app",cat:"Communication",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"✉️",download:"official-store"},
+{name:"Google Photos",type:"app",cat:"Photography",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🌄",download:"official-store"},
+{name:"Google Meet",type:"app",cat:"Communication",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"📹",download:"official-store"},
+{name:"Google Gemini",type:"app",cat:"AI",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"♊",download:"official-store"},
+{name:"Microsoft Copilot",type:"app",cat:"AI",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"✨",download:"official-store"},
+{name:"Perplexity",type:"app",cat:"AI",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🔎",download:"official-store"},
+{name:"Claude",type:"app",cat:"AI",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🧠",download:"official-store"},
+{name:"Amazon Shopping",type:"app",cat:"Shopping",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"📦",download:"official-store"},
+{name:"Google Pay",type:"app",cat:"Finance",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"💳",download:"official-store"},
+{name:"Paytm",type:"app",cat:"Finance",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"💰",download:"official-store"},
+{name:"CRED",type:"app",cat:"Finance",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"💳",download:"official-store"},
+{name:"Myntra",type:"app",cat:"Shopping",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"👕",download:"official-store"},
+{name:"Swiggy",type:"app",cat:"Food",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🍔",download:"official-store"},
+{name:"Zomato",type:"app",cat:"Food",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🍕",download:"official-store"},
+{name:"Uber",type:"app",cat:"Travel",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🚕",download:"official-store"},
+{name:"Ola",type:"app",cat:"Travel",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🚗",download:"official-store"},
+{name:"Google Maps",type:"app",cat:"Travel",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🗺️",download:"official-store"},
+{name:"Microsoft OneDrive",type:"app",cat:"Cloud",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"☁️",download:"official-store"},
+{name:"Dropbox",type:"app",cat:"Cloud",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"📦",download:"official-store"},
+{name:"Notion",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"📓",download:"official-store"},
+{name:"Trello",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"📋",download:"official-store"},
+{name:"Zoom Workplace",type:"app",cat:"Communication",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"📹",download:"official-store"},
+{name:"Microsoft Teams",type:"app",cat:"Communication",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"👥",download:"official-store"},
+{name:"LinkedIn",type:"app",cat:"Social",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"💼",download:"official-store"},
+{name:"Reddit",type:"app",cat:"Social",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"💬",download:"official-store"},
+{name:"Pinterest",type:"app",cat:"Social",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"📌",download:"official-store"},
+{name:"X",type:"app",cat:"Social",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"𝕏",download:"official-store"},
+{name:"VLC",type:"app",cat:"Video",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"▶️",download:"official-store"},
+{name:"MX Player",type:"app",cat:"Video",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎬",download:"official-store"},
+{name:"YouTube Music",type:"app",cat:"Music",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎵",download:"official-store"},
+{name:"JioSaavn",type:"app",cat:"Music",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎶",download:"official-store"},
+{name:"SoundCloud",type:"app",cat:"Music",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🎧",download:"official-store"},
+{name:"Adobe Lightroom",type:"app",cat:"Photography",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"📷",download:"official-store"},
+{name:"Picsart",type:"app",cat:"Photography",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🎨",download:"official-store"},
+{name:"Snapseed",type:"app",cat:"Photography",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🖼️",download:"official-store"},
+{name:"Adobe Express",type:"app",cat:"Design",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"✨",download:"official-store"},
+{name:"Microsoft 365",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"📘",download:"official-store"},
+{name:"Google Translate",type:"app",cat:"Education",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🌐",download:"official-store"},
+{name:"Duolingo",type:"app",cat:"Education",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🦉",download:"official-store"},
+{name:"Coursera",type:"app",cat:"Education",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🎓",download:"official-store"},
+{name:"DigiLocker",type:"app",cat:"Government",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🪪",download:"official-store"},
+{name:"Aarogya Setu",type:"app",cat:"Government",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🏥",download:"official-store"},
+{name:"Files by Google",type:"app",cat:"Tools",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"📁",download:"official-store"},
+{name:"Google Authenticator",type:"app",cat:"Security",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🔐",download:"official-store"},
+{name:"Bitwarden",type:"app",cat:"Security",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🔒",download:"official-store"},
+{name:"Brave Browser",type:"app",cat:"Browser",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🦁",download:"official-store"},
+{name:"Firefox",type:"app",cat:"Browser",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🦊",download:"official-store"},
+{name:"Opera Browser",type:"app",cat:"Browser",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🌐",download:"official-store"},
+{name:"Google Calendar",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"📅",download:"official-store"},
+{name:"Google Keep",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"📝",download:"official-store"},
+{name:"Todoist",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"✅",download:"official-store"},
+{name:"Forest",type:"app",cat:"Productivity",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🌱",download:"official-store"},
+{name:"Speedtest",type:"app",cat:"Tools",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"⚡",download:"official-store"},
+{name:"AccuWeather",type:"app",cat:"Weather",version:"Latest",android:"See store",size:"See store",trending:true,latest:true,icon:"🌤️",download:"official-store"},
+{name:"Google Earth",type:"app",cat:"Travel",version:"Latest",android:"See store",size:"See store",trending:false,latest:true,icon:"🌍",download:"official-store"},
+
+];
+
+
+
+let mode="all",filter="all",selectedCategory="all";
+const categoryIcons={Action:"🎯",Adventure:"🗺️",Racing:"🏎️",Simulation:"🚜",Strategy:"♟️",Sports:"⚽",Puzzle:"🧩","Role Playing":"⚔️",Education:"📚",Tools:"🛠️",Entertainment:"🎬",Photography:"📸",Music:"🎵",Video:"🎬",Productivity:"✓",Weather:"☁️",Security:"🔐",Finance:"₹",Documents:"📄",Audio:"🎙️",Storage:"☁️",Internet:"🌐",News:"📰",Personalization:"🎨",Shooter:"🎯",Board:"🎲",Survival:"🌊",Arcade:"🕹️",Card:"🃏",Food:"🍔",Cloud:"☁️",Design:"🎨",Government:"🏛️",Browser:"🌐"};
+function scrollToSection(id){if(id==="top"){window.scrollTo({top:0,behavior:"smooth"});return}document.getElementById(id)?.scrollIntoView({behavior:"smooth",block:"start"})}
+function toggleSidebar(){
+ const s=document.getElementById("sidebar"),o=document.getElementById("sidebarOverlay");
+ const open=s.classList.toggle("open"); o.classList.toggle("show",open);
+}
+function closeSidebar(){
+ document.getElementById("sidebar").classList.remove("open");
+ document.getElementById("sidebarOverlay").classList.remove("show");
+}
+function showMode(m,el,e){
+ if(e) e.stopPropagation();
+ mode=m;
+ filter="all";
+ selectedCategory="all";
+ document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+ if(el)el.classList.add("active");
+ render();
+ scrollToSection(m==="apps"?"apps":m==="games"?"trending":"top");
+ if(window.innerWidth<801)closeSidebar();
+}
+function setFilter(f,el,e){
+ if(e) e.stopPropagation();
+ filter=f;
+ mode="all";
+ selectedCategory="all";
+ render();
+ scrollToSection("trending");
+}
+function matches(x){
+ const q=document.getElementById("search").value.toLowerCase().trim();
+ if(selectedCategory!=="all" && x.cat!==selectedCategory)return false;
+ if(q && !(x.name+" "+x.cat).toLowerCase().includes(q))return false;
+ if(mode!=="all"&&x.type!==mode.slice(0,-1))return false;
+ if(filter==="trending"&&!x.trending)return false;
+ if(filter==="latest"&&!x.latest)return false;
+ if(filter==="favorites"&&!isFavorite(x.name))return false;
+ return true;
+}
+function cover(x){
+ const colors=x.type==="game"?"#168fff":"#18c8d9";
+ return `<div class="cover" style="--cover:${colors}"><div class="cover-icon">${categoryIcons[x.cat]||"✦"}</div><span class="cover-label">${x.cat}</span></div>`;
+}
+function card(x){
+ const key=encodeURIComponent(x.name);
+ const fav=isFavorite(x.name);
+ return `<article class="card card-click" onclick="openDetails(decodeURIComponent('${key}'))">
+   ${cover(x)}
+   <div class="card-tools"><button class="fav-btn ${fav?"active":""}" title="Favorite" onclick="event.stopPropagation();toggleFavorite(decodeURIComponent('${key}'))">${fav?"★":"☆"}</button></div>
+   <div class="card-body">
+    <h3>${x.name}</h3>
+    <div class="meta"><span>v${x.version}</span><span>${x.size}</span><span>${x.android}</span></div>
+    <div class="rating">★ ${x.trending?"4.5":"4.3"}</div>
+    <button class="download" onclick="event.stopPropagation();downloadItem('${x.name}','${x.download}')">↓ Download</button>
+   </div>
+ </article>`;
+}
+function renderCategories(){
+ const cats=[...new Set(items.map(x=>x.cat))];
+ const safeCat=c=>JSON.stringify(c).replace(/</g,"\u003c");
+ document.getElementById("categoriesGrid").innerHTML=cats.map(c=>`<button type="button" class="category-card" data-category="${String(c).replace(/&/g,"&amp;").replace(/"/g,"&quot;")}" style="--cat:${c==="Action"?"#e83f47":"#138fff"}"><i class="category-symbol">${categoryIcons[c]||"✦"}</i><span>${c}</span></button>`).join("");
+ document.getElementById("sideCats").innerHTML=cats.slice(0,12).map(c=>`<button type="button" class="cat" data-category="${String(c).replace(/&/g,"&amp;").replace(/"/g,"&quot;")}"><span class="cat-dot" style="background:${c==="Action"?"#ef4c52":"#267cff"}"></span>${c}</button>`).join("");
+ document.querySelectorAll("[data-category]").forEach(el=>el.addEventListener("click",()=>categoryFilter(el.dataset.category)));
+}
+function categoryFilter(c){
+ selectedCategory=String(c);
+ document.getElementById("search").value="";
+ // Keep the current section (Games / Apps / Home) while filtering by category.
+ // This prevents clicking a category inside Apps from jumping back to Home.
+ filter="all";
+ document.querySelectorAll("[data-category]").forEach(el=>el.classList.toggle("active",el.dataset.category===selectedCategory));
+ render();
+ closeSidebar();
+ scrollToSection(mode==="apps"?"apps":"trending");
+}
+function render(){
+ updateStats();
+ const filtered=items.filter(matches);
+ const status=document.getElementById("categoryStatus");
+ const gameSection=document.getElementById("trending");
+ const appSection=document.getElementById("apps");
+ const gameTitle=document.getElementById("gameSectionTitle");
+ const appTitle=document.getElementById("appSectionTitle");
+ if(status) status.textContent=selectedCategory!=="all" ? "• "+selectedCategory : "";
+
+ const games=filtered.filter(x=>x.type==="game");
+ const apps=filtered.filter(x=>x.type==="app");
+
+ // Home: show both sections. Games: show only games. Apps: show only apps.
+ if(mode==="games"){
+   gameSection.style.display="block";
+   appSection.style.display="none";
+   if(gameTitle) gameTitle.textContent=selectedCategory!=="all" ? "Games • "+selectedCategory : "All Games";
+   document.getElementById("gameGrid").innerHTML=games.length ? games.map(card).join("") : `<div class="empty-state">No games found.</div>`;
+ }else if(mode==="apps"){
+   gameSection.style.display="none";
+   appSection.style.display="block";
+   if(appTitle) appTitle.textContent=selectedCategory!=="all" ? "Apps • "+selectedCategory : "All Apps";
+   document.getElementById("appGrid").innerHTML=apps.length ? apps.map(card).join("") : `<div class="empty-state">No apps found.</div>`;
+ }else{
+   gameSection.style.display="block";
+   appSection.style.display="block";
+   if(gameTitle) gameTitle.textContent="Trending Games";
+   if(appTitle) appTitle.textContent="Popular Apps";
+   document.getElementById("gameGrid").innerHTML=games.length ? games.slice(0,6).map(card).join("") : `<div class="empty-state">No games found${selectedCategory!=="all"?" in <b>"+selectedCategory+"</b>":""}.</div>`;
+   document.getElementById("appGrid").innerHTML=apps.length ? apps.slice(0,6).map(card).join("") : `<div class="empty-state">No apps found${selectedCategory!=="all"?" in <b>"+selectedCategory+"</b>":""}.</div>`;
+ }
+}
+
+loadAdminCatalog();
+
+let favoriteCache=null;
+function getFavorites(){
+  if(favoriteCache) return favoriteCache;
+  try{
+    const raw=JSON.parse(localStorage.getItem("ghFavorites")||"[]");
+    favoriteCache=new Set(Array.isArray(raw)?raw:[]);
+  }catch(e){favoriteCache=new Set()}
+  return favoriteCache;
+}
+function isFavorite(name){return getFavorites().has(name)}
+function toggleFavorite(name){
+  const f=getFavorites();
+  if(f.has(name)) f.delete(name); else f.add(name);
+  localStorage.setItem("ghFavorites",JSON.stringify([...f]));
+  render();
+}
+function quickFilter(f,el){
+ filter=f; selectedCategory="all";
+ document.querySelectorAll(".quick-chip").forEach(b=>b.classList.remove("active"));
+ if(el)el.classList.add("active");
+ render();
+}
+function openDetails(name){
+ const x=items.find(i=>i.name===name); if(!x)return;
+ const fav=isFavorite(x.name);
+ document.getElementById("detailsContent").innerHTML=`
+  <div class="details-cover">${categoryIcons[x.cat]||x.icon||"✦"}</div>
+  <div class="details-title">${x.name}</div>
+  <div class="details-sub">${x.type==="game"?"🎮 Game":"▦ App"} • ${x.cat}</div>
+  <div class="details-tags"><span>Version: ${x.version}</span><span>${x.size}</span><span>${x.android}</span><span>★ ${x.trending?"4.5":"4.3"}</span></div>
+  <p style="color:#aab8c8;font-size:12px;line-height:1.6">Check the official store listing for the current release, developer information, compatibility and installation details. Game Hub does not host or modify third-party software.</p>
+  <div class="details-actions">
+   <button class="secondary" onclick="toggleFavorite('${x.name.replace(/'/g,"\\\\'")}');openDetails('${x.name.replace(/'/g,"\\\\'")}')">${fav?"★ Remove Favorite":"☆ Add Favorite"}</button>
+   <button class="primary" onclick="downloadItem('${x.name}','${x.download}');closeDetails()">↓ Official Download</button>
+  </div>`;
+ document.getElementById("detailsModal").classList.add("show");
+}
+function closeDetails(e){
+ if(!e||e.target===document.getElementById("detailsModal"))document.getElementById("detailsModal").classList.remove("show");
+}
+const catalogStats=(()=>{
+  let games=0,apps=0;
+  for(const x of items) x.type==="game"?games++:apps++;
+  return {total:items.length,games,apps};
+})();
+function updateStats(){
+ const f=getFavorites();
+ let games=0,apps=0;
+ for(const x of items)x.type==="game"?games++:apps++;
+ const a=document.getElementById("statTotal"),g=document.getElementById("statGames"),ap=document.getElementById("statApps"),fv=document.getElementById("statFav");
+ if(a)a.textContent=items.length;if(g)g.textContent=games;if(ap)ap.textContent=apps;if(fv)fv.textContent=f.size;
+}
+
+function downloadItem(name,url){
+  const q = encodeURIComponent(name);
+  const isApple = /iPhone|iPad|iPod|Macintosh/i.test(navigator.userAgent);
+  const storeUrl = isApple
+    ? "https://apps.apple.com/in/search?term=" + q
+    : "https://play.google.com/store/search?q=" + q + "&c=apps&hl=en_IN";
+
+  // Game Hub never downloads an APK directly.
+  // Always send visitors to the official app store.
+  window.location.href = storeUrl;
+}
+/* ===== Robust Theme / Preference Engine ===== */
+function safeStorageGet(key){try{return localStorage.getItem(key)}catch(e){return null}}
+function safeStorageSet(key,value){try{localStorage.setItem(key,String(value))}catch(e){}}
+function getTheme(){
+  const saved=safeStorageGet("ghTheme");
+  if(saved==="light"||saved==="dark")return saved;
+  return safeStorageGet("ghDark")==="false" ? "light" : "dark";
+}
+function applyTheme(mode,persist=true){
+  mode=mode==="light"?"light":"dark";
+  const light=mode==="light";
+  document.documentElement.setAttribute("data-theme",mode);
+  document.body.classList.toggle("theme-light",light);
+  document.body.classList.toggle("light-preview",light);
+  const t=document.getElementById("darkToggle");
+  if(t)t.checked=!light;
+  const b=document.getElementById("themeBtn");
+  if(b){
+    b.textContent=light?"☀️":"☾";
+    b.title=light?"Switch to dark mode":"Switch to light mode";
+    b.setAttribute("aria-label",b.title);
+  }
+  const meta=document.querySelector('meta[name="theme-color"]');
+  if(meta)meta.setAttribute("content",light?"#f4f7fb":"#050a11");
+  if(persist)safeStorageSet("ghTheme",mode);
+}
+function toggleTheme(){applyTheme(getTheme()==="dark"?"light":"dark")}
+function toggleLight(){toggleTheme()}
+function toggleDark(el){applyTheme(el&&el.checked?"dark":"light")}
+function toggleAnimations(el){
+  const on=!!(el&&el.checked);
+  document.body.classList.toggle("noanim",!on);
+  safeStorageSet("ghAnim",on);
+}
+function toggleSave(el){safeStorageSet("ghSave",!!(el&&el.checked))}
+function resetSettings(){
+  ["ghTheme","ghDark","ghAnim","ghSave","ghSearch"].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});
+  location.reload();
+}
+function maintenanceMessage(text,ok=true){
+ const ids=["maintenanceStatus","maintenanceStatus2"]; ids.forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=text});
+ const dots=["maintenanceDot","maintenanceDot2"]; dots.forEach(id=>{const e=document.getElementById(id);if(e){e.style.background=ok?"#20c77a":"#ffb020";e.style.boxShadow=ok?"0 0 10px rgba(32,199,122,.45)":"0 0 10px rgba(255,176,32,.45)"}});
+}
+
+/* Smart AI Security Center.
+   This is a deterministic local analyzer, not a cloud LLM or antivirus engine. */
+function aiSetStatus(title,meta,state="ok"){
+ const dot=document.getElementById("aiHealthDot"),t=document.getElementById("aiHealthTitle"),m=document.getElementById("aiHealthMeta");
+ if(t)t.textContent=title;if(m)m.textContent=meta;
+ if(dot)dot.className="ai-health-dot"+(state==="warn"?" warn":state==="bad"?" bad":"");
+}
+function aiReport(lines){
+ const el=document.getElementById("aiReport");
+ if(el)el.textContent=lines.join("\n");
+}
+function aiFindIssues(){
+ const issues=[],notes=[];
+ const required=["sidebar","search","categoriesGrid","sideCats","gameGrid","appGrid","settingsModal","detailsModal"];
+ const missing=required.filter(id=>!document.getElementById(id));
+ if(missing.length)issues.push("Missing UI: "+missing.join(", "));
+ const seen=new Set(),dupes=[];
+ for(const x of items){
+   const key=String(x.name||"").trim().toLowerCase();
+   if(!key)issues.push("Listing with no name.");
+   else if(seen.has(key))dupes.push(x.name);
+   else seen.add(key);
+   if(!x.type||!["game","app"].includes(x.type))issues.push((x.name||"Unknown")+": invalid type.");
+   if(!x.cat)notes.push((x.name||"Unknown")+": category missing.");
+   if(x.download && /^(javascript:|data:|vbscript:)/i.test(String(x.download)))issues.push((x.name||"Unknown")+": unsafe download scheme.");
+   if(x.download && /example\.com/i.test(String(x.download)))issues.push((x.name||"Unknown")+": placeholder download URL.");
+ }
+ if(dupes.length)notes.push("Duplicate names: "+dupes.slice(0,8).join(", ")+(dupes.length>8?" …":""));
+ ["ghDark","ghAnim","ghSave"].forEach(k=>{
+   const v=localStorage.getItem(k);
+   if(v!==null&&v!=="true"&&v!=="false")issues.push("Invalid setting: "+k);
+ });
+ if(document.querySelectorAll("img").length>20)notes.push("Many image elements detected; lazy-loading may improve performance.");
+ const nodeCount=document.querySelectorAll("*").length;
+ if(nodeCount>2200)notes.push("Large DOM detected ("+nodeCount+" nodes).");
+ return {issues,notes,nodeCount};
+}
+function runSmartAIScan(){
+ try{
+  const s=aiFindIssues(), total=s.issues.length+s.notes.length;
+  const state=s.issues.length?"warn":"ok";
+  aiSetStatus(s.issues.length?"Review recommended":"Healthy",new Date().toLocaleTimeString(),state);
+  aiReport([
+   "AI Scan complete",
+   "Listings checked: "+items.length,
+   "Issues: "+s.issues.length+" • Notes: "+s.notes.length,
+   "",
+   ...(s.issues.length?s.issues.map(x=>"⚠ "+x):["✓ No high-confidence client-side issues found."]),
+   ...(s.notes.length?["","ℹ "+s.notes.join("\nℹ ")] : []),
+   "",
+   "Next: use AI Repair for safe local fixes."
+  ]);
+ }catch(e){aiSetStatus("Scan error","The local analyzer hit an error.","bad");aiReport(["AI Scan error",String(e&&e.message||e)])}
+}
+function runSmartAIRepair(){
+ try{
+  const changes=[];
+  ["ghDark","ghAnim","ghSave"].forEach(k=>{
+   const v=localStorage.getItem(k);
+   if(v!==null&&v!=="true"&&v!=="false"){localStorage.removeItem(k);changes.push("Reset invalid "+k);}
+  });
+  for(const x of items){
+   if(!x.name){x.name="Untitled Listing";changes.push("Added missing name.");}
+   if(!x.type||!["game","app"].includes(x.type)){x.type="game";changes.push("Fixed invalid type for "+x.name);}
+   if(!x.cat){x.cat="Other";changes.push("Added category to "+x.name);}
+   if(!x.version)x.version="Latest";
+   if(!x.android)x.android="See store";
+   if(!x.size)x.size="See store";
+   if(!x.download)x.download="official-store";
+   if(/^javascript:|^data:|^vbscript:/i.test(String(x.download))) {x.download="official-store";changes.push("Replaced unsafe download field for "+x.name);}
+  }
+  renderCategories();render();updateStats();
+  aiSetStatus("Repair complete",changes.length+" safe fix(es) applied.","ok");
+  aiReport(["AI Repair complete","",...(changes.length?changes.map(x=>"✓ "+x):["✓ Nothing needed repair."]),"","No files were deleted and no app/APK was modified."]);
+ }catch(e){aiSetStatus("Repair error","No changes were made after the error.","bad");aiReport(["AI Repair error",String(e&&e.message||e)])}
+}
+function runSmartAIPerformance(){
+ try{
+  const nodes=document.querySelectorAll("*").length;
+  const cards=document.querySelectorAll(".card").length;
+  const imgs=document.querySelectorAll("img").length;
+  const advice=[];
+  if(nodes>2200)advice.push("Large DOM: keep card rendering lazy.");
+  if(imgs>20)advice.push("Many images: use lazy loading/compressed WebP.");
+  if(cards>100)advice.push("Large catalog: render fewer cards per viewport.");
+  if(!advice.length)advice.push("No obvious client-side performance hotspot detected.");
+  aiSetStatus("Performance checked",nodes+" DOM nodes • "+cards+" cards • "+imgs+" images","ok");
+  aiReport(["Performance AI review","",...advice.map(x=>"• "+x),"","The current smooth-render optimizations remain enabled."]);
+ }catch(e){aiSetStatus("Performance check failed","Try again.","bad")}
+}
+
+function runSmartAIRecommendations(){
+  try{
+    const result=aiFindIssues(),recommendations=[];
+    const fav=getFavorites(),games=items.filter(x=>x.type==="game").length;
+    const apps=items.filter(x=>x.type==="app").length,cats=new Set(items.map(x=>x.cat).filter(Boolean)).size;
+    if(result.issues.length)recommendations.push("Fix "+result.issues.length+" issue(s) with AI Repair.");
+    if(result.notes.length)recommendations.push("Review "+result.notes.length+" catalog/performance note(s).");
+    if(items.length<30)recommendations.push("Add more verified listings for better discovery.");
+    if(cats<8)recommendations.push("Add more categories for easier browsing.");
+    if(fav.size===0)recommendations.push("Test Favorites by saving one listing.");
+    if(games===0)recommendations.push("Add verified game listings.");
+    if(apps===0)recommendations.push("Add verified app listings.");
+    recommendations.push("Keep every download button on an official store/source.");
+    recommendations.push("Keep title, version, size and Android requirements accurate.");
+    recommendations.push("Run AI Scan after large catalog changes.");
+    aiSetStatus("AI improvement plan",recommendations.length+" recommendation(s) generated.","ok");
+    aiReport(["🧠 AI Improvement Plan","",...recommendations.map((x,i)=>(i+1)+". "+x),"","Local analysis only; no remote AI model is required."]);
+  }catch(e){aiSetStatus("AI plan failed","Try again.","bad");aiReport(["AI Improvement error",String(e&&e.message||e)])}
+}
+function exportAIReport(){
+  const el=document.getElementById("aiReport");
+  const text=(el?el.textContent:"No AI report yet.")+"\\n\\nGame Hub v1.2 • "+new Date().toLocaleString();
+  try{
+    const blob=new Blob([text],{type:"text/plain;charset=utf-8"});
+    const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+    a.download="gamehub-ai-report.txt";document.body.appendChild(a);a.click();
+    setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000);
+  }catch(e){aiSetStatus("Report unavailable","Browser download was blocked.","warn")}
+}
+
+function runSmartAIReset(){
+ if(!confirm("Reset only Game Hub local preferences? Your catalog and favorites will not be deleted."))return;
+ ["ghDark","ghAnim","ghSave","ghSearch"].forEach(k=>localStorage.removeItem(k));
+ const d=document.getElementById("darkToggle"),a=document.getElementById("animToggle"),s=document.getElementById("saveToggle");
+ if(d)d.checked=true;if(a)a.checked=true;if(s)s.checked=false;
+ aiSetStatus("Safe reset complete","Preferences restored.","ok");
+ aiReport(["Safe Reset complete","✓ Theme/animation/search preferences restored.","✓ Favorites and catalog were not deleted."]);
+}
+
+/* Instant Auto-Heal layer.
+   It repairs only safe, deterministic client-side problems. It never deletes
+   catalog data and never claims to be an antivirus/server repair engine. */
+let aiHealBusy=false, aiHealTimer=null;
+function autoHealGameHub(reason="health check"){
+ if(aiHealBusy)return;
+ aiHealBusy=true;
+ try{
+   const fixes=[];
+   ["ghDark","ghAnim","ghSave"].forEach(k=>{
+     const v=localStorage.getItem(k);
+     if(v!==null&&v!=="true"&&v!=="false"){localStorage.removeItem(k);fixes.push("reset "+k);}
+   });
+   if(!Array.isArray(items)){ throw new Error("Catalog data is unavailable"); }
+   for(const x of items){
+     if(!x.name)x.name="Untitled Listing";
+     if(!["game","app"].includes(x.type))x.type="game";
+     if(!x.cat)x.cat="Other";
+     if(!x.version)x.version="Latest";
+     if(!x.android)x.android="See store";
+     if(!x.size)x.size="See store";
+     if(!x.download)x.download="official-store";
+     if(/^(javascript:|data:|vbscript:)/i.test(String(x.download))){x.download="official-store";fixes.push("secured "+x.name);}
+   }
+   const required=["sidebar","search","categoriesGrid","sideCats","gameGrid","appGrid","settingsModal","detailsModal"];
+   const missing=required.filter(id=>!document.getElementById(id));
+   if(!missing.length){
+     renderCategories(); render(); updateStats();
+     aiSetStatus(fixes.length?"Auto-healed":"Healthy",fixes.length?fixes.length+" safe fix(es) applied":"No repair needed","ok");
+     if(fixes.length)aiReport(["⚡ Instant Auto-Heal","Trigger: "+reason,"",...fixes.map(x=>"✓ "+x),"","Catalog and favorites were preserved."]);
+     sessionStorage.removeItem("ghAutoHealReloaded");
+     return true;
+   }
+   aiSetStatus("UI issue detected","Attempting safe recovery…","warn");
+   aiReport(["⚡ Instant Auto-Heal","Trigger: "+reason,"Missing UI: "+missing.join(", "),"","Trying safe recovery without deleting data…"]);
+   return false;
+ }catch(e){
+   aiSetStatus("Auto-heal warning","Safe recovery could not complete.","bad");
+   aiReport(["Auto-Heal warning","Trigger: "+reason,"",String(e&&e.message||e),"","No destructive changes were made."]);
+   return false;
+ }finally{aiHealBusy=false;}
+}
+function scheduleInstantAutoHeal(reason){
+ clearTimeout(aiHealTimer);
+ aiHealTimer=setTimeout(()=>{
+   const ok=autoHealGameHub(reason);
+   if(!ok){
+     const key="ghAutoHealReloaded";
+     if(sessionStorage.getItem(key)!=="1"){
+       sessionStorage.setItem(key,"1");
+       setTimeout(()=>location.reload(),120);
+     }
+   }
+ },0);
+}
+
+function runMaintenance(manual=false){
+ try{
+  const required=["sidebar","search","categoriesGrid","sideCats","gameGrid","appGrid","settingsModal","legalModal"];
+  const missing=required.filter(id=>!document.getElementById(id));
+  let repaired=[];
+  if(missing.length){
+    repaired.push("missing UI: "+missing.join(", "));
+  }
+  // Repair safe local preferences if they contain invalid values.
+  ["ghDark","ghAnim","ghSave"].forEach(k=>{const v=localStorage.getItem(k);if(v!==null&&v!=="true"&&v!=="false"){localStorage.removeItem(k);repaired.push("reset "+k)}});
+  renderCategories(); render();
+  maintenanceMessage(repaired.length?"Maintenance repaired settings/UI":"Maintenance: Healthy",true);
+  const report=document.getElementById("maintenanceReport"),meta=document.getElementById("maintenanceMeta");
+  const msg=(repaired.length?"Repaired: "+repaired.join("; "):"No UI errors detected.")+" Last check: "+new Date().toLocaleTimeString();
+  if(report)report.textContent=msg;if(meta)meta.textContent=msg;
+  if(manual)document.getElementById("maintenanceModal")?.classList.add("show");
+ }catch(err){
+  maintenanceMessage("Maintenance warning",false);
+  const msg="A runtime error was detected. Reloading the page may restore the UI.";
+  const report=document.getElementById("maintenanceReport");if(report)report.textContent=msg;
+  if(manual)document.getElementById("maintenanceModal")?.classList.add("show");
+ }
+}
+function runSecurityScan(){
+ const risky=[];
+ items.forEach(x=>{if(x.download && /example\.com|javascript:|data:/i.test(x.download))risky.push(x.name)});
+ const msg=risky.length?"Security check: "+risky.length+" listing(s) need review." : "Security check: No suspicious download URL pattern found.";
+ const report=document.getElementById("maintenanceReport"),meta=document.getElementById("maintenanceMeta");
+ if(report)report.textContent=msg+" Last scan: "+new Date().toLocaleTimeString();
+ if(meta)meta.textContent=msg;
+ maintenanceMessage(risky.length?"Review Needed":"Security: Clear",!risky.length);
+ document.getElementById("maintenanceModal")?.classList.add("show");
+}
+function openMaintenance(){document.getElementById("maintenanceModal").classList.add("show");runMaintenance(false)}
+function closeMaintenance(e){if(!e||e.target===document.getElementById("maintenanceModal"))document.getElementById("maintenanceModal").classList.remove("show")}
+
+// Hidden automatic maintenance: safe, non-destructive client-side health checks.
+// This runs while the page is open. It never deletes catalog data or changes auth rules.
+(function startHiddenAutoMonitor(){
+  let busy=false;
+  const run=()=>{
+    if(busy || document.visibilityState==="hidden") return;
+    busy=true;
+    try{
+      if(typeof autoHealGameHub==="function") autoHealGameHub("hidden automatic health check");
+      // Run the deterministic analyzer silently when available.
+      if(typeof aiFindIssues==="function") aiFindIssues();
+    }catch(e){}
+    finally{busy=false;}
+  };
+  setTimeout(run,1200);
+  setInterval(run,60000);
+  document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")setTimeout(run,500);});
+  window.addEventListener("pageshow",()=>setTimeout(run,500));
+  window.addEventListener("online",()=>setTimeout(run,500));
+})();
+
+document.addEventListener("keydown",(e)=>{
+  if(e.key==="Escape"){
+    const modal=document.getElementById("adminModal");
+    if(modal && modal.classList.contains("show")) forceCloseAdmin();
+  }
+});
+window.addEventListener("error",(e)=>{
+  try{
+    scheduleInstantAutoHeal("runtime error: "+String(e&&e.message||"unknown error"));
+  }catch(x){}
+});
+window.addEventListener("unhandledrejection",(e)=>{
+  try{
+    scheduleInstantAutoHeal("unhandled promise rejection");
+  }catch(x){}
+});
+
+
+/* ===== Secure-ish local admin layer =====
+   Important: a static GitHub Pages file cannot provide real server-side admin security.
+   This layer prevents casual access and protects local owner controls, but production
+   authentication must be moved to a backend/identity provider before sensitive actions. */
+const ADMIN_HASH_KEY="ghAdminPinHashV1";
+const ADMIN_SESSION_KEY="ghAdminSessionV1";
+const ADMIN_FAIL_KEY="ghAdminFailsV1";
+const ADMIN_LOCK_KEY="ghAdminLockUntilV1";
+const ADMIN_SESSION_MS=15*60*1000;
+function adminBytes(s){return new TextEncoder().encode(String(s))}
+async function adminHash(pin){
+  try{
+    if(window.crypto && crypto.subtle){
+      const b=await crypto.subtle.digest("SHA-256",adminBytes(pin));
+      return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");
+    }
+  }catch(e){}
+  let h=2166136261;
+  const str="GameHubAdminV1:"+String(pin);
+  for(let i=0;i<str.length;i++){
+    h^=str.charCodeAt(i);
+    h=Math.imul(h,16777619);
+  }
+  return "fallback-"+(h>>>0).toString(16).padStart(8,"0");
+}
+function adminGet(k,d=null){try{return localStorage.getItem(k)??d}catch(e){return d}}
+function adminSet(k,v){try{localStorage.setItem(k,String(v))}catch(e){}}
+function adminIsSetup(){return !!adminGet(ADMIN_HASH_KEY)}
+function adminSessionValid(){const x=Number(adminGet(ADMIN_SESSION_KEY,"0"));return Number.isFinite(x)&&x>Date.now()}
+function adminLocked(){return Number(adminGet(ADMIN_LOCK_KEY,"0"))>Date.now()}
+function adminRemaining(){return Math.max(0,Number(adminGet(ADMIN_SESSION_KEY,"0"))-Date.now())}
+// Hidden owner shortcut: tap the main Game Hub logo 5 times quickly.
+(function setupHiddenAdminLogo(){
+  let taps=0, resetTimer=null;
+  const logo=document.getElementById("gameHubAdminLogo");
+  if(!logo)return;
+  const tap=()=>{
+    taps++;
+    clearTimeout(resetTimer);
+    resetTimer=setTimeout(()=>{taps=0;},2500);
+    if(taps>=5){
+      taps=0;
+      clearTimeout(resetTimer);
+      if(typeof openAdminGate==="function") openAdminGate();
+    }
+  };
+  logo.addEventListener("click",tap);
+  logo.addEventListener("keydown",(e)=>{
+    if(e.key==="Enter" || e.key===" "){
+      e.preventDefault();
+      tap();
+    }
+  });
+})();
+function openAdminGate(){
+ const modal=document.getElementById("adminModal");
+ if(!modal)return;
+ modal.classList.add("show");
+ const input=document.getElementById("adminPin");
+ if(input){input.value="";setTimeout(()=>input.focus(),60);}
+ document.getElementById("adminGateMsg").textContent="";
+ if(adminSessionValid())showAdminPanel(); else showAdminGate();
+}
+function forceCloseAdmin(){
+  const modal=document.getElementById("adminModal");
+  if(!modal)return;
+  try{ if(typeof adminLock==="function") adminLock(); }catch(e){}
+  modal.classList.remove("show");
+  modal.style.display="none";
+  setTimeout(()=>{ if(modal) modal.style.display=""; },0);
+}
+function closeAdmin(e){
+ const modal=document.getElementById("adminModal");
+ if(!modal)return;
+ if(!e || e.target===modal){
+   adminLock();
+   modal.classList.remove("show");
+ }
+}
+function showAdminPanel(){document.getElementById("adminGate").style.display="none";document.getElementById("adminPanel").style.display="block";document.getElementById("adminSessionMeta").textContent="Protected session • expires in 15 minutes";renderAdminList();adminSessionTick()}
+function adminSessionTick(){
+  if(!adminSessionValid()){
+    adminLock();
+    const msg=document.getElementById("adminGateMsg");
+    if(msg)msg.textContent="Admin session expired. Enter your PIN again.";
+    return;
+  }
+  const m=Math.ceil(adminRemaining()/60000);
+  const el=document.getElementById("adminCountdown");
+  if(el)el.textContent="Auto-lock in about "+m+" minute(s).";
+  setTimeout(adminSessionTick,30000);
+}
+function saveAdminCatalog(){try{localStorage.setItem("ghAdminCatalogV1",JSON.stringify(items))}catch(e){}}
+function loadAdminCatalog(){try{const raw=JSON.parse(localStorage.getItem("ghAdminCatalogV1")||"null");if(Array.isArray(raw)&&raw.length)items.splice(0,items.length,...raw)}catch(e){}}
+function renderAdminList(){
+ const el=document.getElementById("adminList");if(!el)return;
+ el.innerHTML=items.map((x,i)=>`<div class="admin-item"><div><b>${adminEsc(x.name)}</b><small>${adminEsc(x.type)} • ${adminEsc(x.cat)}</small></div><button class="danger" onclick="adminDeleteListing(${i})">Delete</button></div>`).join("");
+}
+function adminDeleteListing(i){if(!adminRequire())return;const x=items[i];if(!x)return;if(!confirm("Delete "+x.name+" from this browser's local catalog?"))return;items.splice(i,1);saveAdminCatalog();renderCategories();render();updateStats();renderAdminList()}
+function adminResetCatalog(){if(!adminRequire())return;if(!confirm("Remove local catalog changes and restore the built-in catalog?"))return;try{localStorage.removeItem("ghAdminCatalogV1")}catch(e){}location.reload()}
+function adminExportCatalog(){if(!adminRequire())return;const blob=new Blob([JSON.stringify(items,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="gamehub-catalog-backup.json";document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
+
+function openSettings(){document.getElementById("settingsModal").classList.add("show")}
+function closeSettings(e){if(!e||e.target===document.getElementById("settingsModal"))document.getElementById("settingsModal").classList.remove("show")}
+const legalPages={
+ privacy:{
+  title:"Privacy Policy",
+  body:`<h3>1. About this policy</h3>
+  <p>This Privacy Policy explains how Game Hub may handle information when you visit or use this website. It is original website text and is intended as a practical privacy notice, not as a substitute for legal advice.</p>
+  <h3>2. Information we may receive</h3>
+  <p>Depending on the features enabled on the website, we may receive information you voluntarily provide, such as an email address when you contact us. Basic technical information such as browser type, device information, approximate usage information and security logs may also be processed by our hosting, analytics or security providers.</p>
+  <h3>3. How information is used</h3>
+  <ul><li>To operate and maintain the website.</li><li>To respond to support or copyright requests.</li><li>To improve performance, security and user experience.</li><li>To prevent abuse, fraud or unlawful activity.</li></ul>
+  <h3>4. Cookies and storage</h3>
+  <p>Game Hub may use cookies or browser storage for preferences such as theme and search settings. Third-party services may use their own technologies if analytics or advertising is later enabled.</p>
+  <h3>5. Third-party services</h3>
+  <p>Links, advertisements, app stores, hosting providers, analytics tools and other third-party services may have their own privacy policies. Game Hub is not responsible for privacy practices outside its control.</p>
+  <h3>6. Data rights</h3>
+  <p>Where applicable law gives you rights concerning your personal data, you may contact us to ask about access, correction, deletion, withdrawal of consent or other available rights. Requests may be subject to lawful exceptions.</p>
+  <h3>7. Contact</h3><p>Use the Contact section on this website for privacy-related requests. Replace the placeholder contact details before publishing.</p>`
+ },
+ terms:{
+  title:"Terms of Use",
+  body:`<h3>1. Acceptance</h3><p>By using Game Hub, you agree to these Terms of Use. If you do not agree, please do not use the website.</p>
+  <h3>2. Website purpose</h3><p>Game Hub is intended to provide information, discovery and links relating to games and applications. Availability and features may change without notice.</p>
+  <h3>3. Content and ownership</h3><p>Game Hub does not claim ownership of third-party games, applications, names, logos, screenshots or trademarks unless expressly stated. Third-party rights remain with their respective owners.</p>
+  <h3>4. Downloads and external links</h3><p>Before publishing a download or external link, the site operator should confirm that distribution or linking is lawful and permitted by the relevant rights holder and platform terms. Users are responsible for reviewing third-party terms before downloading or installing software.</p>
+  <h3>5. Prohibited use</h3><ul><li>Do not use the website for unlawful activity.</li><li>Do not upload or distribute content you do not have rights to distribute.</li><li>Do not attempt to disrupt, abuse or compromise the website or its users.</li></ul>
+  <h3>6. Changes</h3><p>These terms may be updated as the website and applicable requirements change. The latest version will be posted on this page.</p>`
+ },
+ copyright:{
+  title:"Copyright & Intellectual Property",
+  body:`<h3>1. Respect for rights</h3><p>Game Hub respects copyright, trademark and other intellectual-property rights. We will not knowingly authorize the distribution of material when the operator does not have the necessary rights.</p>
+  <h3>2. Third-party material</h3><p>Game titles, artwork, logos, screenshots and application content may belong to their respective owners. Their appearance on Game Hub does not by itself mean that Game Hub owns or licenses those rights.</p>
+  <h3>3. Copyright complaints</h3><p>If you believe material on the website infringes your rights, send a notice through the site's contact channel identifying the protected work, the specific material or URL, your contact details, and a statement explaining the basis of your claim. We may remove or restrict access while reviewing a valid complaint.</p>
+  <h3>4. Counter-notices</h3><p>Where legally appropriate, a person whose material was removed may provide information explaining why the material was authorized. Any further process will follow applicable law.</p>
+  <h3>5. Important</h3><p>Do not use this page as a claim that Game Hub has a blanket copyright license. Each third-party title should have its own documented permission, license or lawful basis before redistribution.</p>`
+ },
+ disclaimer:{
+  title:"Disclaimer",
+  body:`<h3>1. General information</h3><p>Game Hub provides general information and links. Information may be incomplete, outdated or changed by third parties. We do not guarantee that every listing, version, price, availability status or external link is current.</p>
+  <h3>2. Software</h3><p>Users should obtain software from authorized or trusted sources and review permissions, publisher information and applicable terms before installation. Game Hub does not guarantee that third-party software is free from defects, malware or compatibility issues.</p>
+  <h3>3. No ownership claim</h3><p>Third-party names, brands, games and applications remain the property of their respective owners.</p>
+  <h3>4. Legal compliance</h3><p>The website operator is responsible for obtaining any permissions, licenses, registrations or notices required for the website's actual activities. This page is not a legal opinion or a guarantee of compliance.</p>`
+ },
+ contact:{
+  title:"Contact & Legal Requests",
+  body:`<h3>General Support</h3><p>For website support, corrections or questions, contact the operator using the official email address you publish here.</p>
+  <p><strong>Email:</strong> YOUR-EMAIL@example.com</p>
+  <h3>Copyright Requests</h3><p>For copyright or intellectual-property complaints, include the relevant URL, identify the protected work, explain your rights, and provide a way to contact you.</p>
+  <h3>Privacy Requests</h3><p>For privacy or personal-data requests, clearly state what you are requesting and provide enough information for the operator to locate the relevant account or communication.</p>
+  <p><strong>Important:</strong> Replace the placeholder email before the website goes live.</p>`
+ }
+};
+
+function openLegal(key){
+ const page=legalPages[key]; if(!page)return;
+ document.getElementById("legalTitle").textContent=page.title;
+ document.getElementById("legalContent").innerHTML=page.body;
+ document.getElementById("legalModal").classList.add("show");
+}
+function closeLegal(e){
+ if(!e || e.target===document.getElementById("legalModal"))
+  document.getElementById("legalModal").classList.remove("show");
+}
+
+
+
+(function(){
+  applyTheme(getTheme(),false);
+  const a=safeStorageGet("ghAnim"),save=safeStorageGet("ghSave");
+  const at=document.getElementById("animToggle"),st=document.getElementById("saveToggle");
+  if(at)at.checked=(a!=="false");
+  if(st)st.checked=(save==="true");
+  document.body.classList.toggle("noanim",a==="false");
+})();
+renderCategories();render();updateStats();
+document.getElementById("adminPin")?.addEventListener("keydown",e=>{
+  if(e.key==="Enter"){e.preventDefault();adminAuthenticate();}
+});
+document.addEventListener("keydown",e=>{
+ if(e.key==="/" && document.activeElement!==document.getElementById("search")){e.preventDefault();document.getElementById("search").focus()}
+ if(e.key==="Escape"){closeDetails();closeSettings();closeLegal()}
+});
+const savedSearch=localStorage.getItem("ghSearch");
+if(savedSearch && localStorage.getItem("ghSave")==="true"){document.getElementById("search").value=savedSearch;render()}
+let searchTimer=0;
+document.getElementById("search").addEventListener("input",()=>{
+  const value=document.getElementById("search").value;
+  if(localStorage.getItem("ghSave")==="true")localStorage.setItem("ghSearch",value);
+  clearTimeout(searchTimer);
+  searchTimer=setTimeout(()=>requestAnimationFrame(render),120);
+});
+
+</script>
+</body>
+</html>
